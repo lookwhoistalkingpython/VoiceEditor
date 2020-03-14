@@ -1,0 +1,7 @@
+-template_context 08_batch_file.110
+-template_name run Python script
+-template_start
+ipy32 [path to Python file]
+pause
+-template_end
+

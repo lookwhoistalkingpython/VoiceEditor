@@ -1,0 +1,223 @@
+@Version=Plato-UTF8
+
+#LIBRARY MODULES
+glob\\global module
+string\\string module
+os\\operating system module
+sys\\system module
+from string import Template
+subprocess\\subprocess module
+
+#STANDARD SYNTAX TEMPLATES
+[[d]].close()\\file dot close template
+[[d]]=open([d],"[r]")\\open file template
+[[d]].write([d])\\file dot write template
+[[d]]=[d]([d])\\function call template
+[[f]].seek([v])\\file dot seek template
+class [d] ([object]):\\class definition template
+def __init__(self [,][d]):\\constructor function template
+def __call__(self [,][d]):\\call function template
+def __iter__(self):\\iterator function template
+def __next__(self):\\next function template
+[[d]].__init__(self,[[d]])\\run super initialisation template
+[[d]].[d]([])\\run super function template
+def [f] ([self]):\\function definition template
+for [i] in [d] :\\for loop template
+if([]):\\if statement template
+elif([c]):\\else if template
+else:\\else template
+glob.glob([])\\global dot global template
+main()\\main function call template
+None\\python null
+if __name__ == "__main__":\\if name is equal to main template
+while([]):\\while loop template
+while(True):\\while true loop
+while(False):\\while false loop
+print("[d]",[d])\\print comma template
+print("[d]"%([d]))\\print percent template
+print("[d]")\\print simple template
+
+#OS FUNCTIONS
+os.chdir([])\\operating system dot change directory
+os.getcwd([])\\operating system dot get current working directory
+os.listdir([])\\operating system dot list directory
+([d],[d])=os.path.splitext([])\\operating system dot path dot split extension
+[[d]]=os.path.basename([])\\operating system dot path dot base name
+os.path.normcase([])\\operating system dot path dot normal case
+os.path.normpath([])\\operating system dot path dot normal path
+os.path.realpath([])\\operating system dot path dot real path
+os.path.dirname([])\\operating system dot path dot directory name
+os.path.expanduser([])\\operating system dot path dot expand user
+os.path.exists([])\\operating system dot path dot exists
+os.path.isfile([])\\operating system dot path dot is file
+os.path.join([])\\operating system dot path dot join
+
+
+#SYSTEM MODULE
+sys.exit([return code])\\system dot exit
+
+#comparison operators
+=\\assignment equals
+==\\comparison equals
+!=\\not equal operator
+<\\less than operator
+>\\greater than operator
+>=\\greater than or equal to operator
+<=\\less than or equal to operator
++=\\self increment operator
+-=\\self decrement operator
+
+#CODE SNIPPETS
+.py\\dot Python
+{[]}\\empty braces
+([])\\empty parens
+[[]]\\empty squares
+r'[]'\\raw string
+ipy32\\iron python executable
+self.\\self dot
+==True\\is equal to true
+==False\\is not equal to true
+"""\\multiline string start
+"""\\multiline string end
+cmd\\short form for command
+except IOError as e:\\except input output error as
+except SameFileError as e:\\except same file error as
+except [[d]] as e:\\except some error as
+del\\element delete operator
+rstrip([d])\\right strip template
+lstrip([d])\\left strip template
+self.editBox.AppendText([text])\\edit box append text
+self.cmdBox.AppendText([text])\\command box append text
+self.viewBox.AppendText([text])\\view box append text
+self.statusBox.AppendText([text])\\status box append text
+self.scaleBox.AppendText([text])\\scale box append text
+[d]=self.editBox.SelectionStart\\edit box selection start
+a-zA-Z\\match all letters in the alphabet
+
+#RE FUNCTIONS
+$\\match end of line
+^\\match start of line
+[r]=[s].replace([o],[n],[c])\\string dot replace
+[d].group([d])\\match object dot group
+[d].start([d])\\match object dot start
+[d].end([d])\\match object dot end
+[d].span([d])\\match object dot span
+re\\regular expression module
+[m]=re.findall([d],[d])\\regular expression dot find all
+[m]=re.finditer([d],[d])\\regular expression dot find iterator
+[m]=re.match([d],[d])\\regular expression dot match
+[m]=re.search([d],[d])\\regular expression dot search
+[m]=re.sub([d],[d],[d])\\regular expression dot sub
+A-Z\\regular expression uppercase letter range
+a-z\\regular expression lowercase letter range
+A-Za-z\\regular expression letter range
+^A-Za-z\\regular expression not letter range
+0-9\\regular expression digit range
+?P<[d]>\\regular expression named capture group
+?P=[d]\\regular expression named capture group back reference
+?=[[d]]\\regular expression positive look ahead
+?![[d]]\\regular expression negative look ahead
+
+
+#VOICE EDITOR FUNCTIONS
+remove line
+remove lines
+revert file
+save file
+list directory
+remove spaces off
+remove spaces on
+yank lines
+duplicate lines
+insert lines
+comment in lines
+comment out lines
+indent lines right
+indent lines left
+substitute :[line start]:[line end]:[old string]:[new string]:\\substitute template
+
+
+//#SHUTIL FUNCTIONS
+shutil\\shell utility module
+shutil.copyfile([])\\Shell utility dot copy file
+
+#list functions
+[[l]].append([])\\list dot append
+[[l]].index([])\\list dot index
+[[l]].extend([])\\list dot extend
+[[l]].remove([])\\list dot remove
+[[l]].count([])\\list dot Count
+[[l]].pop([])\\list dot pop
+[[l]].reverse([])\\list dot reverse
+[[l]].sort([])\\list dot sort
+[[l]].copy([])\\list dot copy
+[[l]].clear([])\\list dot clear
+[[l]].insert([index],[element])\\list dot insert
+
+#tuple methods
+[[t]].index([])\\tuple dot index
+[[t]].count([])\\tuple dot count
+[[t]][[l]:[u]]\\tuple slice
+[enumerate]([t])\\tuple enumerate
+
+#dictionary functions
+[[d]]={[v]:[v],}\\dictionary initialisation
+del [d][[e]]\\dictionary delete element
+[[d]].get([])\\dictionary dot get
+[[d]].update([e])\\dictionary dot update
+[[d]].pop([])\\dictionary dot pop
+[[d]].keys()\\dictionary dot keys
+[[d]].items([])\\dictionary dot items
+[[d]].values([])\\dictionary dot values
+[[d]].clear()\\dot
+[[d]].copy()\\dictionary dot copy
+[[d]].fromkeys([s][,v])\\dictionary dot from keys
+[[d]].popitem()\\dictionary dot pop item
+[d][[d]]=[d]\\dictionary assignment template
+[[d]].setdefault([key][,default_value])\\dictionary dot set default
+
+#Python functions on to tuples lists and dictionaries
+any([iterable])\\any function template
+all([iterable])\\all function template
+ascii([object])\\ASCII function template
+bool([value])\\Boolean function template
+dict([iterable])\\dictionary function template
+len([s])\\length function template
+filter([function],[iterable])\\filter function template
+iter([object][,sentinel])\\iterator function template
+
+#string functions
+[[str]].split([sep][,maxsplit])\\string dot split
+[[str]].isdigit()\\string dot is digit
+[[str]].replace([[d]])\\string dot is replace
+abs([])\\absolute function
+[[s]]=Template([])\\string constructor
+[[s]].substitute([])\\string dot substitute
+[[s]].endswith([d])\\string dot ends with
+[[s]].startswith([d])\\string dot starts with
+
+
+#Python Built In Functions
+isinstance([object],[class info])\\is instance template
+int([d])\\convert to integer function
+max([v])\\max function template
+min([v])\\min function template
+"[[d]]".join([list])\\join function template
+
+#Voice Editor
+self.statusBox.Text="[]"\\status box text
+self.cmdBox.Text="[]"\\command box text
+self.viewBox.Text="[]"\\view box text
+self.editBox.Text="[]"\\editboxtext
+VOICEEDITORROOT\\voice editor root
+
+#Subprocess module
+[[d]]=subprocess.check_call([args][,shell=True])\\subprocess dot check call
+[[d]]=subprocess.check_output([args][,shell=True])\\subprocess dot check output
+except CalledProcessError as e:\\except called process error as
+some new word
+
+#Keyword module
+keyword.iskeyword([item])\\keyword dot is keyword
+
+
