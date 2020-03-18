@@ -43,6 +43,8 @@ class CmdDosFavouriteFilesSnapshot(object):
    self.statusBox.Text=\
        " Favourite files does not exist: %s"%fullName
    return self.parent
+
+
   cmdEdit= self.parent.create_cmd_edit_object()
   cmdEdit.processThisCommand(fullName)
   return cmdEdit

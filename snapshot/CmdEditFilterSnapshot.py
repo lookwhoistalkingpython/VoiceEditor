@@ -169,7 +169,6 @@ class CmdEditFilterSnapshot(object):
    nonCommentPartOfFilterDefinitionLine=\
        filterDefinitionFileLine[0:positionOfLastHashSign]
    self.filterList.append(nonCommentPartOfFilterDefinitionLine)
-   print("appended",nonCommentPartOfFilterDefinitionLine)
 
   return 0
 

@@ -415,6 +415,9 @@ class CmdEditSnapshot(object) :
   fullFileName=fullFileName.rstrip()
   if(not os.path.isabs(fullFileName)):
    fullFileName=VoiceEditorSettingsSnapshot.VOICEEDITORROOT+r"\\"+fullFileName
+  if ( not os.path.exists(fullFileName)):
+   self.statusBox.Text="File does not exist: %s"%fullFileName
+   return self
   if(fullFileName not in self.listDirectory.recentFilesList):
    self.listDirectory.recentFilesList.append(fullFileName)
   cmdEdit=self.listDirectory.create_cmd_edit_object()
