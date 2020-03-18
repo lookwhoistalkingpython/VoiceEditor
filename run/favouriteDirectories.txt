@@ -5,3 +5,17 @@ scripts
 snapshot
 scratch
 templates
+C:\Users\uvm\Projects\UVM
+C:\Users\uvm\Projects\iic
+C:\Users\uvm\Projects\iic\agents
+C:\Users\uvm\Projects\iic\agents\iic_agent
+C:\Users\uvm\Projects\iic\agents\iic_agent\bits
+C:\Users\uvm\Projects\iic\agents\wb_agent
+C:\Users\uvm\Projects\iic
+C:\Users\uvm\Projects\iic\docs
+C:\Users\uvm\Projects\iic\iic_tb
+C:\Users\uvm\Projects\iic\iic_tb\env
+C:\Users\uvm\Projects\iic\iic_tb\sequences
+C:\Users\uvm\Projects\iic\iic_tb\sim
+C:\Users\uvm\Projects\iic\iic_tb\tb
+C:\Users\uvm\Projects\iic\iic_tb\test
