@@ -222,3 +222,17 @@ keyword.iskeyword([item])\\keyword dot is keyword
 
 #Project specific abbreviations
 
+
+#UVM
+
+//\\UVM comment line
+iic\\eye squared see
+env\\environment component
+wire\\Verilog wire type
+logic\\Verilog logic type
+reg\\Verilog register type
+uvm\\lowercase UVM
+UVM\\uppercase UVM
+pkg\\short form for package
+seq\\short form for sequence
+

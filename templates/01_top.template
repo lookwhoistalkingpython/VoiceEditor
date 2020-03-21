@@ -1,4 +1,4 @@
--template_context 00_top_infrastructure.110
+-template_context 01_top_infrastructure.110
 
 -template_name top
 -template_start
@@ -36,9 +36,9 @@ endmodule
 -template_end
 
 
--template_context 00_top_infrastructure.111
+-template_context 01_top_infrastructure.111
 
--template_name []
+-template_name global definitions package
 -template_start
 package [global_defs_pkg];
  //Example: typedef int unsigned ui;
@@ -60,18 +60,28 @@ parameter ui P_DEFAULTWBFREQUENCY= 50000; //10 MHz.
 parameter ui P_ZEROARBMIX = 1;
 parameter ui P_ONEARBMIX = 100;
 parameter ui P_BITTIMEOUT = 200_00000; //20ms
-
-
-
-endpackage
 -template_end
-#
-#
-#-template_context 00_top_infrastructure.[]
-#
-#-template_name []
-#-template_start
-#-template_end
-#
-#
+
+
+
+-template_context 01_top_infrastructure.112
+
+-template_name import [uvm_pkg]::[*];
+-template_start
+import [uvm_pkg]::[*];
+-template_end
+
+
+
+-template_context 01_top_infrastructure.113
+
+-template_name single template
+-template_start
+-template_end
+
+
+
+
+
+
 

@@ -1,0 +1,64 @@
+
+
+-template_context 02_env_infrastructure.[]
+
+-template_name env
+-template_start
+class [env] extends uvm_env;
+
+ `uvm_component_utils([env])
+
+//------------------------------------------
+// Data Members
+//------------------------------------------
+
+ //Example: iic_scoreboard m_iic_scoreboard;
+
+
+//------------------------------------------
+// Constraints
+//------------------------------------------
+
+//------------------------------------------
+// Methods
+//------------------------------------------
+ extern function new(string name = "[env]", uvm_component parent = null);
+ extern function void build_phase(uvm_phase phase);
+ extern function void connect_phase(uvm_phase phase);
+
+endclass
+
+
+function [env]::new(string name = "[env]", uvm_component parent = null);
+ super.new(name, parent);
+endfunction
+
+
+function void [env]::build_phase(uvm_phase phase);
+
+ //Example: m_iic_scoreboard = iic_scoreboard::type_id::create("m_iic_scoreboard",this);
+
+ //Example: For bring up, build two agents and connect them.
+ //Example: if (!uvm_config_db#(iic_env_config)::get(this, "", "iic_env_config", m_iic_env_config))
+  //Example: `uvm_fatal("iic_env","Could not get handle to iic_env_config.")
+
+ //Example: m_iic_agent1 = iic_agent::type_id::create("m_iic_agent1",this);
+
+ //Example: m_iic_virtual_sequencer =
+ //Example:                      iic_virtual_sequencer::type_id::create("iic_virtual_sequencer", this);
+
+endfunction
+
+function void [env]::connect_phase(uvm_phase phase);
+
+ //Example: Cross traffic master
+ //Example: m_iic_agent1.m_ap.connect(m_iic_scoreboard.m_master1DataImpPort);
+
+
+endfunction
+
+
+-template_end
+
+
+
