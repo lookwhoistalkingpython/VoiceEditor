@@ -25,6 +25,8 @@ from VoiceEditorSettings import VoiceEditorSettings
 class CmdEditFilter(object):
 
  lastFilterUsed= "TBD"
+ filterList=[]
+ filterDefinitionFileHasBeenRead=0
 
 
  def __init__(self,parent,fileToEditList,currentEditLine,allTheBoxes):
@@ -38,10 +40,13 @@ class CmdEditFilter(object):
   self.fileToEditList=fileToEditList
   self.currentEditLine=currentEditLine
   self.parent=parent
-  self.filterList=[]
   self.isFilterEnabled=0
   self.fileToEditListFiltered=[]
   self.fileToEditListFilteredLineNumbers=[]
+
+  if ( not CmdEditFilter.filterDefinitionFileHasBeenRead):
+   self.read_predefined_filters()
+   CmdEditFilter.filterDefinitionFileHasBeenRead=1
 
 
  def __call__(self):
@@ -50,6 +55,7 @@ class CmdEditFilter(object):
 
   if(filterOptionsReturnValue<0):
    return self.parent
+
 
   return self
 
@@ -93,15 +99,14 @@ class CmdEditFilter(object):
   elif(command.isdigit() and not self.isFilterEnabled):
    #command contains list index of filter to apply
    selectedFilter=int(command)
-   if(selectedFilter<0 or selectedFilter>len(self.filterList)-1):
-    print("self.filterList",self.filterList)
+   if(selectedFilter<0 or selectedFilter>len(CmdEditFilter.filterList)-1):
     self.statusBox.Text=\
         "Selected predefined filter option is out of range: %d"%selectedFilter
    else:
     if(selectedFilter==0):
      self.filterToApply=CmdEditFilter.lastFilterUsed
     else:
-     self.filterToApply=self.filterList[selectedFilter]
+     self.filterToApply=CmdEditFilter.filterList[selectedFilter]
     self.apply_filter()
     self.isFilterEnabled=1
     self.nextCommand=self
@@ -123,13 +128,6 @@ class CmdEditFilter(object):
 
   self.viewBox.Text=""
 
-  try:
-   filterDefinitionFile=open\
-       (VoiceEditorSettings.lineFilterDefinitionFileName,"r")
-  except:
-   self.statusBox.Text="Unable to open file: %s"\
-       %VoiceEditorSettings.lineFilterDefinitionFileName
-   return -1
 
   message= """
   \r\n
@@ -141,34 +139,17 @@ class CmdEditFilter(object):
 
   index=0
 
-  #offer as a choice the last filter that was used
-  self.filterList.append(CmdEditFilter.lastFilterUsed+"#last filter used")
-  self.viewBox.AppendText("    %4d %s \r\n"%(0,CmdEditFilter.lastFilterUsed+"#last filter used"))
+  #Add last filter to the list of filters if it is not already on the list
+  if (CmdEditFilter.lastFilterUsed!="TBD"):
+   CmdEditFilter.filterList[0]=CmdEditFilter.lastFilterUsed
+   print ("1: -2",CmdEditFilter.filterList[1:-2])
+   print(CmdEditFilter.filterList[1:len(CmdEditFilter.filterList)-1])
+   print(CmdEditFilter.filterList[1:len(CmdEditFilter.filterList)])
+   if ( not CmdEditFilter.lastFilterUsed in CmdEditFilter.filterList[1:-1]):
+    CmdEditFilter.filterList.append(CmdEditFilter.lastFilterUsed)
 
-  for filterDefinitionFileLine in filterDefinitionFile:
-
-   #Ignore empty lines
-   copyOfFilterDefinitionFileLine=filterDefinitionFileLine
-   if(not copyOfFilterDefinitionFileLine.strip()):
-    continue
-
-   #Display line filter file in view window
-   self.viewBox.AppendText("    %4d %s \r\n"%(index+1,filterDefinitionFileLine))
-   index=index+1
-
-   #Everything before the ultimate hash sign is the filter definition.
-   matchLastPositionOfHashSign=\
-       re.search(r'#', filterDefinitionFileLine[::-1])
-   if(matchLastPositionOfHashSign):
-    positionOfLastHashSign=\
-        len(filterDefinitionFileLine)-1-matchLastPositionOfHashSign.start()
-   else:
-    positionOfLastHashSign=len(filterDefinitionFileLine)-1
-
-   #Store all filter definitions retrieved from file.
-   nonCommentPartOfFilterDefinitionLine=\
-       filterDefinitionFileLine[0:positionOfLastHashSign]
-   self.filterList.append(nonCommentPartOfFilterDefinitionLine)
+  for index,filterDefinition in enumerate(CmdEditFilter.filterList):
+   self.viewBox.AppendText("    %4d %s \r\n"%(index,CmdEditFilter.filterList[index]))
 
   return 0
 
@@ -205,4 +186,37 @@ class CmdEditFilter(object):
   self.nextCommand=self.parent
 
 
+ def read_predefined_filters(self):
 
+  try:
+   filterDefinitionFile=open\
+       (VoiceEditorSettings.lineFilterDefinitionFileName,"r")
+  except:
+   self.statusBox.Text="Unable to open file: %s"\
+       %VoiceEditorSettings.lineFilterDefinitionFileName
+   return
+
+  for filterDefinitionFileLine in filterDefinitionFile:
+
+   #Ignore empty lines
+   copyOfFilterDefinitionFileLine=filterDefinitionFileLine
+   if(not copyOfFilterDefinitionFileLine.strip()):
+    continue
+
+   #Everything before the ultimate hash sign is the filter definition.
+   matchLastPositionOfHashSign=\
+       re.search(r'#', filterDefinitionFileLine[::-1])
+   if(matchLastPositionOfHashSign):
+    positionOfLastHashSign=\
+        len(filterDefinitionFileLine)-1-matchLastPositionOfHashSign.start()
+   else:
+    positionOfLastHashSign=len(filterDefinitionFileLine)-1
+
+   #Store all filter definitions retrieved from file.
+   nonCommentPartOfFilterDefinitionLine=\
+       filterDefinitionFileLine[0:positionOfLastHashSign]
+   CmdEditFilter.filterList.append(nonCommentPartOfFilterDefinitionLine)
+
+
+  #Reserve the top slot for the last filter
+  CmdEditFilter.filterList.insert(0,"TBD #Last filter used")

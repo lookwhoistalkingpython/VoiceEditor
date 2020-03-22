@@ -81,10 +81,7 @@ class CmdEdit(object) :
   self.cmdEditUpdateScale=CmdEditUpdateScale(self.scaleBox,self.editBox,self.statusBox)
   self.cmdEditLineBreak=CmdEditLineBreak\
       (self.fileToEditList,self.cmdBox,self.editBox,self.viewBox,self.statusBox)
-#  self.cmdEditFilter=CmdEditFilter\
-#      (self,self.fileToEditList,self.currentEditLine,self.allTheBoxes)
   self.cmdEditFilter=None
-#  self.statusBox.Text = "%s (Saved)"%self.fullFileName
   self.voiceEditor.fastButtonAreaHandler.reset()
 
 
