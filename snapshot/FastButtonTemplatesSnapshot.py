@@ -152,9 +152,9 @@ class FastButtonTemplatesSnapshot(FastButtonRenderButtonsSnapshot):
 
    for line in templateFile :
 
-#    matchComment=re.match(r'\s*#',line)
-#    if (matchComment):
-#     continue
+    matchComment=re.match(r'\s*#',line)
+    if (matchComment):
+     continue
 #    matchEmptyLine=re.match(r'\s*$',line)
 #    if (matchEmptyLine):
 #     continue
