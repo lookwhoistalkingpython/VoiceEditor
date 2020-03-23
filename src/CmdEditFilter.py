@@ -142,10 +142,7 @@ class CmdEditFilter(object):
   #Add last filter to the list of filters if it is not already on the list
   if (CmdEditFilter.lastFilterUsed!="TBD"):
    CmdEditFilter.filterList[0]=CmdEditFilter.lastFilterUsed
-   print ("1: -2",CmdEditFilter.filterList[1:-2])
-   print(CmdEditFilter.filterList[1:len(CmdEditFilter.filterList)-1])
-   print(CmdEditFilter.filterList[1:len(CmdEditFilter.filterList)])
-   if ( not CmdEditFilter.lastFilterUsed in CmdEditFilter.filterList[1:-1]):
+   if ( not CmdEditFilter.lastFilterUsed in CmdEditFilter.filterList[1:len(CmdEditFilter.filterList)]):
     CmdEditFilter.filterList.append(CmdEditFilter.lastFilterUsed)
 
   for index,filterDefinition in enumerate(CmdEditFilter.filterList):
