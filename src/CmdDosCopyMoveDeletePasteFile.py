@@ -65,9 +65,14 @@ class CmdDosCopyMoveDeletePasteFile(object) :
 
   if(re.match(r'insert ',command)):
    self.destinationDirectory=os.getcwd()
-   self.insert_files()
-   scriptFileName=os.path.join(VoiceEditorSettings.scriptDirectoryPath,"duplicate_move_delete.py")
-   return self.parent.edit_file(scriptFileName)
+   if (self.operation=="idle"):
+    self.statusBox.Text="No file operation (copy,move,delete) has been selected. Aborting insert."
+    self.parent.commandState="wait for selection"
+    self.parent.list_directory()
+    return self.parent
+   else:
+    scriptFileName=os.path.join(VoiceEditorSettings.scriptDirectoryPath,"duplicate_move_delete.py")
+    return self.parent.edit_file(scriptFileName)
 
   self.viewBox.Text = ""
   index=0
@@ -164,6 +169,10 @@ class CmdDosCopyMoveDeletePasteFile(object) :
   return self.parent
 
  def insert_files(self):
+
+  fileList=[]
+
+  print("self.operation",self.operation)
 
   scriptFileName=os.path.join(VoiceEditorSettings.scriptDirectoryPath,"duplicate_move_delete.py")
   try:
