@@ -1,4 +1,4 @@
--template_context 00_python.05_built_in_functions.110
+-template_context 00_python.04_built_in_functions.110
 -template_name abs(x)
 -template_start
 abs(x)
@@ -9,7 +9,7 @@ or long integer or a floating point number. If the argument is a
 complex number, its magnitude is returned.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.111
+-template_context 00_python.04_built_in_functions.111
 -template_name all(iterable)
 -template_start
 all(iterable)
@@ -21,7 +21,7 @@ element in iterable:             if not element:
 return False         return True     New in version 2.5.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.112
+-template_context 00_python.04_built_in_functions.112
 -template_name any(iterable)
 -template_start
 any(iterable)
@@ -33,7 +33,7 @@ for element in iterable:             if element:
 return True         return False     New in version 2.5.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.113
+-template_context 00_python.04_built_in_functions.113
 -template_name basestring()
 -template_start
 basestring()
@@ -46,7 +46,7 @@ basestring) is equivalent to isinstance(obj, (str, unicode)).     New
 in version 2.3.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.114
+-template_context 00_python.04_built_in_functions.114
 -template_name bin(x)
 -template_start
 bin(x)
@@ -58,7 +58,7 @@ define an __index__() method that returns an integer.     New in
 version 2.6.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.115
+-template_context 00_python.04_built_in_functions.115
 -template_name callable(object)
 -template_start
 callable(object)
@@ -71,7 +71,7 @@ callable (calling a class returns a new instance); class instances are
 callable if they have a __call__() method.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.116
+-template_context 00_python.04_built_in_functions.116
 -template_name chr(i)
 -template_start
 chr(i)
@@ -98,7 +98,7 @@ in version 2.2.     Changed in version 2.4: Function decorator syntax
 added.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.117
+-template_context 00_python.04_built_in_functions.117
 -template_name class bool([x])
 -template_start
 class bool([x])
@@ -128,7 +128,7 @@ contents of the array.     Without an argument, an array of size 0 is
 created.     New in version 2.6.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.118
+-template_context 00_python.04_built_in_functions.118
 -template_name cmp(x, y)
 -template_start
 cmp(x, y)
@@ -139,7 +139,7 @@ the outcome. The return value is negative if x < y, zero if x == y and
 strictly positive if x > y.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.119
+-template_context 00_python.04_built_in_functions.119
 -template_name compile(source, filename, mode[, flags[, dont_inherit]])
 -template_start
 compile(source, filename, mode[, flags[, dont_inherit]])
@@ -198,7 +198,7 @@ The complex type is described in Numeric Types — int, float, long,
 complex.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.120
+-template_context 00_python.04_built_in_functions.120
 -template_name delattr(object, name)
 -template_start
 delattr(object, name)
@@ -215,7 +215,7 @@ about this class.     For other containers see the built-in list, set,
 and tuple classes, as well as the collections module.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.121
+-template_context 00_python.04_built_in_functions.121
 -template_name dir([object])
 -template_start
 dir([object])
@@ -257,7 +257,7 @@ behavior may change across releases. For example, metaclass attributes
 are not in the result list when the argument is a class.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.122
+-template_context 00_python.04_built_in_functions.122
 -template_name divmod(a, b)
 -template_start
 divmod(a, b)
@@ -274,7 +274,7 @@ has the same sign as b, and 0 <= abs(a % b) < abs(b).     Changed in
 version 2.3: Using divmod() with complex numbers is deprecated.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.123
+-template_context 00_python.04_built_in_functions.123
 -template_name enumerate(sequence, start=0)
 -template_start
 enumerate(sequence, start=0)
@@ -295,7 +295,7 @@ version 2.3.     Changed in version 2.6: The start parameter was
 added.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.124
+-template_context 00_python.04_built_in_functions.124
 -template_name eval(expression[, globals[, locals]])
 -template_start
 eval(expression[, globals[, locals]])
@@ -329,7 +329,7 @@ execfile().     See ast.literal_eval() for a function that can safely
 evaluate strings with expressions containing only literals.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.125
+-template_context 00_python.04_built_in_functions.125
 -template_name execfile(filename[, globals[, locals]])
 -template_start
 execfile(filename[, globals[, locals]])
@@ -358,7 +358,7 @@ execfile() returns. execfile() cannot be used reliably to modify a
 function’s locals.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.126
+-template_context 00_python.04_built_in_functions.126
 -template_name file(name[, mode[, buffering]])
 -template_start
 file(name[, mode[, buffering]])
@@ -372,7 +372,7 @@ constructor directly. file is more suited to type testing (for
 example, writing isinstance(f, file)).     New in version 2.2.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.127
+-template_context 00_python.04_built_in_functions.127
 -template_name filter(function, iterable)
 -template_start
 filter(function, iterable)
@@ -405,7 +405,7 @@ represents NaN and infinity as nan, inf or -inf.     The float type is
 described in Numeric Types — int, float, long, complex.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.128
+-template_context 00_python.04_built_in_functions.128
 -template_name format(value[, format_spec])
 -template_start
 format(value[, format_spec])
@@ -425,7 +425,7 @@ dict classes, as well as the collections module.     New in version
 2.4.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.129
+-template_context 00_python.04_built_in_functions.129
 -template_name getattr(object, name[, default])
 -template_start
 getattr(object, name[, default])
@@ -439,7 +439,7 @@ exist, default is returned if provided, otherwise AttributeError is
 raised.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.130
+-template_context 00_python.04_built_in_functions.130
 -template_name globals()
 -template_start
 globals()
@@ -451,7 +451,7 @@ or method, this is the module where it is defined, not the module from
 which it is called).
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.131
+-template_context 00_python.04_built_in_functions.131
 -template_name hasattr(object, name)
 -template_start
 hasattr(object, name)
@@ -463,7 +463,7 @@ not. (This is implemented by calling getattr(object, name) and seeing
 whether it raises an exception or not.)
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.132
+-template_context 00_python.04_built_in_functions.132
 -template_name hash(object)
 -template_start
 hash(object)
@@ -476,7 +476,7 @@ hash value (even if they are of different types, as is the case for 1
 and 1.0).
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.133
+-template_context 00_python.04_built_in_functions.133
 -template_name help([object])
 -template_start
 help([object])
@@ -492,7 +492,7 @@ on the object is generated.     This function is added to the built-in
 namespace by the site module.     New in version 2.2.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.134
+-template_context 00_python.04_built_in_functions.134
 -template_name hex(x)
 -template_start
 hex(x)
@@ -509,7 +509,7 @@ method.     Changed in version 2.4: Formerly only returned an unsigned
 literal.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.135
+-template_context 00_python.04_built_in_functions.135
 -template_name id(object)
 -template_start
 id(object)
@@ -522,7 +522,7 @@ have the same id() value.     CPython implementation detail: This is
 the address of the object in memory.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.136
+-template_context 00_python.04_built_in_functions.136
 -template_name input([prompt])
 -template_start
 input([prompt])
@@ -553,7 +553,7 @@ The integer type is described in Numeric Types — int, float, long,
 complex.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.137
+-template_context 00_python.04_built_in_functions.137
 -template_name isinstance(object, classinfo)
 -template_start
 isinstance(object, classinfo)
@@ -572,7 +572,7 @@ such tuples, a TypeError exception is raised.     Changed in version
 2.2: Support for a tuple of type information was added.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.138
+-template_context 00_python.04_built_in_functions.138
 -template_name issubclass(class, classinfo)
 -template_start
 issubclass(class, classinfo)
@@ -586,7 +586,7 @@ raised.     Changed in version 2.3: Support for a tuple of type
 information was added.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.139
+-template_context 00_python.04_built_in_functions.139
 -template_name iter(o[, sentinel])
 -template_start
 iter(o[, sentinel])
@@ -610,7 +610,7 @@ as fp:         for line in iter(fp.readline, ''):
 process_line(line)     New in version 2.2.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.140
+-template_context 00_python.04_built_in_functions.140
 -template_name len(s)
 -template_start
 len(s)
@@ -631,7 +631,7 @@ buffer, xrange. For other containers see the built in dict, set, and
 tuple classes, and the collections module.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.141
+-template_context 00_python.04_built_in_functions.141
 -template_name locals()
 -template_start
 locals()
@@ -654,7 +654,7 @@ zero). If no arguments are given, returns 0L.     The long type is
 described in Numeric Types — int, float, long, complex.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.142
+-template_context 00_python.04_built_in_functions.142
 -template_name map(function, iterable, ...)
 -template_start
 map(function, iterable, ...)
@@ -672,7 +672,7 @@ arguments may be a sequence or any iterable object; the result is
 always a list.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.143
+-template_context 00_python.04_built_in_functions.143
 -template_name max(arg1, arg2, *args[, key])
 -template_start
 max(arg1, arg2, *args[, key])
@@ -690,7 +690,7 @@ max(a,b,c,key=func)).     Changed in version 2.5: Added support for
 the optional key argument.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.144
+-template_context 00_python.04_built_in_functions.144
 -template_name max(iterable[, key])
 -template_start
 max(iterable[, key])
@@ -698,7 +698,7 @@ max(iterable[, key])
 -template_doc_string_start
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.145
+-template_context 00_python.04_built_in_functions.145
 -template_name memoryview(obj)
 -template_start
 memoryview(obj)
@@ -708,7 +708,7 @@ memoryview(obj)
 memoryview type for more information.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.146
+-template_context 00_python.04_built_in_functions.146
 -template_name min(arg1, arg2, *args[, key])
 -template_start
 min(arg1, arg2, *args[, key])
@@ -726,7 +726,7 @@ min(a,b,c,key=func)).     Changed in version 2.5: Added support for
 the optional key argument.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.147
+-template_context 00_python.04_built_in_functions.147
 -template_name min(iterable[, key])
 -template_start
 min(iterable[, key])
@@ -734,7 +734,7 @@ min(iterable[, key])
 -template_doc_string_start
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.148
+-template_context 00_python.04_built_in_functions.148
 -template_name next(iterator[, default])
 -template_start
 next(iterator[, default])
@@ -750,7 +750,7 @@ version 2.3: This function does not accept any arguments. Formerly, it
 accepted arguments but ignored them.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.149
+-template_context 00_python.04_built_in_functions.149
 -template_name oct(x)
 -template_start
 oct(x)
@@ -761,7 +761,7 @@ result is a valid Python expression.     Changed in version 2.4:
 Formerly only returned an unsigned literal.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.150
+-template_context 00_python.04_built_in_functions.150
 -template_name open(name[, mode[, buffering]])
 -template_start
 open(name[, mode[, buffering]])
@@ -811,7 +811,7 @@ tempfile, and shutil.     Changed in version 2.5: Restriction on first
 letter of mode string introduced.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.151
+-template_context 00_python.04_built_in_functions.151
 -template_name ord(c)
 -template_start
 ord(c)
@@ -828,7 +828,7 @@ the range [0..65535] inclusive; otherwise the string length is two,
 and a TypeError will be raised.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.152
+-template_context 00_python.04_built_in_functions.152
 -template_name pow(x, y[, z])
 -template_start
 pow(x, y[, z])
@@ -853,7 +853,7 @@ floating 3-argument pow() returned platform-dependent results
 depending on floating-point rounding accidents.)
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.153
+-template_context 00_python.04_built_in_functions.153
 -template_name print(*objects, sep=' ', end='\n', file=sys.stdout)
 -template_start
 print(*objects, sep=' ', end='\n', file=sys.stdout)
@@ -911,7 +911,7 @@ Changed in version 2.6: The getter, setter, and deleter attributes
 were added.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.154
+-template_context 00_python.04_built_in_functions.154
 -template_name range(stop)
 -template_start
 range(stop)
@@ -933,7 +933,7 @@ range(1, 11)     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]     >>> range(0, 30,
 >>> range(0)     []     >>> range(1, 0)     []
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.155
+-template_context 00_python.04_built_in_functions.155
 -template_name raw_input([prompt])
 -template_start
 raw_input([prompt])
@@ -949,7 +949,7 @@ then raw_input() will use it to provide elaborate line editing and
 history features.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.156
+-template_context 00_python.04_built_in_functions.156
 -template_name reduce(function, iterable[, initializer])
 -template_start
 reduce(function, iterable[, initializer])
@@ -972,7 +972,7 @@ accum_value = initializer         for x in it:             accum_value
 = function(accum_value, x)         return accum_value
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.157
+-template_context 00_python.04_built_in_functions.157
 -template_name reload(module)
 -template_start
 reload(module)
@@ -1017,7 +1017,7 @@ instances — they continue to use the old class definition. The same is
 true for derived classes.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.158
+-template_context 00_python.04_built_in_functions.158
 -template_name repr(object)
 -template_start
 repr(object)
@@ -1035,7 +1035,7 @@ address of the object. A class can control what this function returns
 for its instances by defining a __repr__() method.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.159
+-template_context 00_python.04_built_in_functions.159
 -template_name reversed(seq)
 -template_start
 reversed(seq)
@@ -1048,7 +1048,7 @@ method and the __getitem__() method with integer arguments starting at
 possibility to write a custom __reversed__() method.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.160
+-template_context 00_python.04_built_in_functions.160
 -template_name round(number[, ndigits])
 -template_start
 round(number[, ndigits])
@@ -1072,7 +1072,7 @@ built-in frozenset, list, tuple, and dict classes, as well as the
 collections module.     New in version 2.4.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.161
+-template_context 00_python.04_built_in_functions.161
 -template_name setattr(object, name, value)
 -template_start
 setattr(object, name, value)
@@ -1095,7 +1095,7 @@ a[start:stop, i]. See itertools.islice() for an alternate version that
 returns an iterator.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.162
+-template_context 00_python.04_built_in_functions.162
 -template_name sorted(iterable[, cmp[, key[, reverse]]])
 -template_start
 sorted(iterable[, cmp[, key[, reverse]]])
@@ -1126,7 +1126,7 @@ grade).     For sorting examples and a brief sorting tutorial, see
 Sorting HOW TO.     New in version 2.4.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.163
+-template_context 00_python.04_built_in_functions.163
 -template_name staticmethod(function)
 -template_start
 staticmethod(function)
@@ -1158,7 +1158,7 @@ Formatting Operations section. In addition see the String Services
 section. See also unicode().
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.164
+-template_context 00_python.04_built_in_functions.164
 -template_name sum(iterable[, start])
 -template_start
 sum(iterable[, start])
@@ -1174,7 +1174,7 @@ precision, see math.fsum(). To concatenate a series of iterables,
 consider using itertools.chain().     New in version 2.3.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.165
+-template_context 00_python.04_built_in_functions.165
 -template_name super(type[, object-or-type])
 -template_start
 super(type[, object-or-type])
@@ -1220,7 +1220,7 @@ cooperative classes using super(), see guide to using super().     New
 in version 2.2.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.166
+-template_context 00_python.04_built_in_functions.166
 -template_name tuple([iterable])
 -template_start
 tuple([iterable])
@@ -1249,7 +1249,7 @@ statements create identical type objects:     >>> class X(object):
 New in version 2.2.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.167
+-template_context 00_python.04_built_in_functions.167
 -template_name unichr(i)
 -template_start
 unichr(i)
@@ -1263,7 +1263,7 @@ argument depends how Python was configured – it may be either UCS2
 ASCII and 8-bit strings see chr().     New in version 2.0.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.168
+-template_context 00_python.04_built_in_functions.168
 -template_name unicode(object='')
 -template_start
 unicode(object='')
@@ -1271,7 +1271,7 @@ unicode(object='')
 -template_doc_string_start
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.169
+-template_context 00_python.04_built_in_functions.169
 -template_name unicode(object[, encoding[, errors]])
 -template_start
 unicode(object[, encoding[, errors]])
@@ -1308,7 +1308,7 @@ Services section. See also str().     New in version 2.0.     Changed
 in version 2.2: Support for __unicode__() added.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.170
+-template_context 00_python.04_built_in_functions.170
 -template_name vars([object])
 -template_start
 vars([object])
@@ -1324,7 +1324,7 @@ locals(). Note, the locals dictionary is only useful for reads since
 updates to the locals dictionary are ignored.
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.171
+-template_context 00_python.04_built_in_functions.171
 -template_name xrange(start, stop[, step])
 -template_start
 xrange(start, stop[, step])
@@ -1349,7 +1349,7 @@ be crafted using the itertools module: islice(count(start, step),
 (stop-start+step-1+2*(step<0))//step).
 -template_doc_string_end
 
--template_context 00_python.05_built_in_functions.172
+-template_context 00_python.04_built_in_functions.172
 -template_name xrange(stop)
 -template_start
 xrange(stop)

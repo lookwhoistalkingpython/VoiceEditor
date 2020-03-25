@@ -71,6 +71,7 @@ class CmdDosCopyMoveDeletePasteFileSnapshot(object) :
     self.parent.list_directory()
     return self.parent
    else:
+    self.insert_files()
     scriptFileName=os.path.join(VoiceEditorSettingsSnapshot.scriptDirectoryPath,"duplicate_move_delete.py")
     return self.parent.edit_file(scriptFileName)
 
@@ -168,11 +169,10 @@ class CmdDosCopyMoveDeletePasteFileSnapshot(object) :
 
   return self.parent
 
+
  def insert_files(self):
 
   fileList=[]
-
-  print("self.operation",self.operation)
 
   scriptFileName=os.path.join(VoiceEditorSettingsSnapshot.scriptDirectoryPath,"duplicate_move_delete.py")
   try:
