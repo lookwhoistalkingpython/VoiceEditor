@@ -13,7 +13,7 @@ module top;
 
  initial begin
   ////Put config's into database
-  //Example: uvm_config_db//(virtual iicIf)::set(null,"*","iicIf1", iicIf1);
+  //Example: uvm_config_db#(virtual iicIf)::set(null,"*","iicIf1", iicIf1);
  end
 
  ////Test bench component instantiations
@@ -72,16 +72,38 @@ import [uvm_pkg]::[*];
 -template_end
 
 
-
 -template_context 02_top_infrastructure.113
 
--template_name single template
+-template_name initial begin block end
 -template_start
+initial begin
+
+end
+-template_end
+
+
+-template_context 02_top_infrastructure.114
+
+-template_name UVM config DB set virtual interface
+-template_start
+uvm_config_db#(virtual [i/f name])::set([null],"[*]","[i/f instance label]", [i/f instance]);
 -template_end
 
 
 
+-template_context 02_top_infrastructure.115
+
+-template_name module port instantiation
+-template_start
+.[module port]([signal]),
+-template_end
 
 
 
+-template_context 02_top_infrastructure.116
+
+-template_name module/interface instantiation
+-template_start
+[[module/interface]] [instance name]([signal list]);
+-template_end
 
