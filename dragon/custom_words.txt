@@ -225,6 +225,8 @@ If\\short form for interface
 Inst\\short form for instance
 
 #UVM
+m_\\member variable prefix
+vif\\short form for virtual interface
 
 //\\UVM comment line
 iic\\eye squared see

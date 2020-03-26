@@ -1,2 +1,3 @@
 \bdef\b#function definitions
-\bclass\b
+\bclass\b#class definitions
+\[[\w ]*?\]#template variables
