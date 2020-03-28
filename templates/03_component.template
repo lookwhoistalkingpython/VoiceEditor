@@ -1,0 +1,250 @@
+
+-template_context 03_component.109
+
+-template_name variable substitution
+-template_start
+\[[]\]
+-template_end
+
+
+
+
+-template_context 03_component.110
+
+-template_name env
+-template_start
+class [env] extends uvm_env;
+
+ `uvm_component_utils([env])
+
+//------------------------------------------
+// Data Members
+//------------------------------------------
+
+ //Example: iic_scoreboard m_iic_scoreboard;
+
+
+//------------------------------------------
+// Constraints
+//------------------------------------------
+
+//------------------------------------------
+// Methods
+//------------------------------------------
+ extern function new(string name = "[env]", uvm_component parent = null);
+ extern function void build_phase(uvm_phase phase);
+ extern function void connect_phase(uvm_phase phase);
+
+endclass
+
+
+function [env]::new(string name = "[env]", uvm_component parent = null);
+ super.new(name, parent);
+endfunction
+
+
+function void [env]::build_phase(uvm_phase phase);
+
+ //Example: m_iic_scoreboard = iic_scoreboard::type_id::create("m_iic_scoreboard",this);
+
+ //Example: For bring up, build two agents and connect them.
+ //Example: if (!uvm_config_db#(iic_env_config)::get(this, "", "iic_env_config", m_iic_env_config))
+  //Example: `uvm_fatal("iic_env","Could not get handle to iic_env_config.")
+
+ //Example: m_iic_agent1 = iic_agent::type_id::create("m_iic_agent1",this);
+
+ //Example: m_iic_virtual_sequencer =
+ //Example:                      iic_virtual_sequencer::type_id::create("iic_virtual_sequencer", this);
+
+endfunction
+
+function void [env]::connect_phase(uvm_phase phase);
+
+ //Example: Cross traffic master
+ //Example: m_iic_agent1.m_ap.connect(m_iic_scoreboard.m_master1DataImpPort);
+
+
+endfunction
+
+
+-template_end
+
+
+
+-template_context 03_component.112
+
+-template_name agent generic
+-template_start
+class [agent name] extends [uvm_component];
+ `uvm_component_utils([agent name])
+
+ string m_name;
+
+ [config name] [config instance];
+ virtual [virtual interface name] [virtual interface instance];
+
+ [sequencer name] [sequencer instance];
+ [driver name] [driver instance];
+
+ uvm_analysis_port #([type]) [m_ap];
+
+ extern function new(string name = "[agent name]", uvm_component parent = null);
+ extern function void build_phase(uvm_phase phase);
+ extern function void connect_phase(uvm_phase phase);
+
+endclass
+
+function [agent name]::new(string name = "[agent name]", uvm_component parent = null);
+ super.new(name,parent);
+ m_name = name;
+endfunction
+
+function void [agent name]::build_phase(uvm_phase phase);
+ super.build_phase(phase);
+
+ // Agent configuration
+ if (!uvm_config_db#([config name])::get(this, "", "[config name]", [config instance]))
+  `uvm_fatal([m_name], "Unable to get handle to [config name].")
+ [virtual interface instance] = [config instance].[virtual interface instance];
+
+ //Create sub components.
+ [driver instance] = [driver name]::type_id::create("[driver instance]", this);
+ [driver instance].[Virtual interface instance] = [virtual interface instance];
+ [sequencer instance] = iic_type_id::create("[sequencer instance]", this);
+
+endfunction
+
+function void [agent name]::connect_phase(uvm_phase phase);
+ super.connect_phase(phase);
+ [driver instance].seq_item_port.connect([sequence instance].seq_item_export);
+ [m_ap] = [sequencer instance].[m_ap];
+endfunction
+-template_end
+
+
+
+-template_context 03_component.113
+
+-template_name agent partially filled in
+-template_start
+
+class [agent name] extends [uvm_agent];
+ `uvm_component_utils([component name])
+
+ string m_name;
+
+ [config name] m_config;
+ virtual [interface name] m_vif;
+
+ [sequencer name] m_sequencer;
+ [driver name] m_driver;
+
+ uvm_analysis_port #([type]) m_ap;
+
+ extern function new(string name = "[agent name]", uvm_agent parent = null);
+ extern function void build_phase(uvm_phase phase);
+ extern function void connect_phase(uvm_phase phase);
+
+endclass
+
+function [agent name]::new(string name = "[agent name]", uvm_component parent = null);
+ super.new(name,parent);
+ m_name = name;
+endfunction
+
+function void [agent name]::build_phase(uvm_phase phase);
+ super.build_phase(phase);
+
+ // Agent configuration
+ if (!uvm_config_db#([config name])::get(this, "", "config", m_config))
+  `uvm_fatal([m_name], "Unable to get handle to [config name].")
+ m_vif=m_config.m_vif;
+
+ //Create sub components.
+ m_driver = [driver name]::type_id::create("m_driver",this);
+ m_driver.m_vif = m_vif;
+ m_sequencer = [sequencer name]::create("m_sequencer", this);
+
+endfunction
+
+function void [component name]::connect_phase(uvm_phase phase);
+ super.connect_phase(phase);
+ m_driver.seq_item_port.connect(m_sequencer.seq_item_export);
+ m_ap = m_sequencer.m_ap;
+endfunction
+
+-template_end
+
+
+
+-template_context [00]_[top].[110]
+
+-template_name driver generic
+-template_start
+class [driver name] extends uvm_driver#([sequence item name]);
+
+ `uvm_component_utils([driver name])
+
+ uvm_analysis_port #([type]) [m_ap];
+
+ string m_name;
+ virtual [virtual interface name] [virtual interface instance];
+
+ extern function new(string name = "[driver name]", uvm_component parent = null);
+ extern task run_phase(uvm_phase phase);
+ extern function void build_phase(uvm_phase phase);
+ extern virtual function void createSymbol();
+
+endclass
+
+function [driver name]::new(string name = "[driver name]", uvm_component parent = null);
+ super.new(name,parent);
+ m_name = name;
+endfunction
+
+function void [driver name]::build_phase(uvm_phase phase);
+ super.build_phase(phase);
+ [m_ap] = new("[m_ap]", this);
+endfunction
+
+
+task [driver name]::run_phase(uvm_phase phase);
+
+
+ forever begin
+
+  seq_item_port.get_next_item(req);
+
+  //Initialise symbol
+  createSymbol;
+  [m_symbol].[virtual interface instance] = [virtual interface instance];
+
+  //Do bit.
+  m_bit.doBit();
+  //Return status to sequence.
+  // req.someVariable = m_status.someVariable ;
+
+  seq_item_port.item_done();
+
+ end
+
+endtask
+
+function void [driver name]::createSymbol();
+
+ case (req.m_symbolType)
+  // someSymbolType             : m_symbol  = someSymbol::type_id::create("[someSymbol]");
+  default                    : `uvm_fatal(m_name, "unknown symbol type.")
+ endcase
+
+endfunction
+
+
+
+
+
+-template_end
+
+
+
+

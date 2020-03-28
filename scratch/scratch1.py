@@ -1,5 +1,6 @@
-class iic_agent extends uvm_agent;
- `uvm_component_utils(iic_agent)
+
+class iic_agent extends [uvm_agent];
+ `uvm_component_utils([component name])
 
  string m_name;
 
@@ -11,7 +12,7 @@ class iic_agent extends uvm_agent;
 
  uvm_analysis_port #([type]) m_ap;
 
- extern function new(string name = "iic_agent", uvm_component parent = null);
+ extern function new(string name = "iic_agent", uvm_agent parent = null);
  extern function void build_phase(uvm_phase phase);
  extern function void connect_phase(uvm_phase phase);
 
@@ -33,17 +34,13 @@ function void iic_agent::build_phase(uvm_phase phase);
  //Create sub components.
  m_driver = [driver name]::type_id::create("m_driver",this);
  m_driver.m_vif = m_vif;
- m_sequencer = iic_type_id::create("m_sequencer", this);
+ m_sequencer = [sequencer name]::create("m_sequencer", this);
 
 endfunction
 
-function void iic_agent::connect_phase(uvm_phase phase);
+function void [component name]::connect_phase(uvm_phase phase);
  super.connect_phase(phase);
  m_driver.seq_item_port.connect(m_sequencer.seq_item_export);
  m_ap = m_sequencer.m_ap;
 endfunction
-
-
-
-
 

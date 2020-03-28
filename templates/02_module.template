@@ -1,4 +1,13 @@
--template_context 02_top_infrastructure.110
+-template_context 02_module.109
+
+-template_name variable substitution
+-template_start
+\[[]\]
+-template_end
+
+
+
+-template_context 02_module.110
 
 -template_name top
 -template_start
@@ -36,7 +45,7 @@ endmodule
 -template_end
 
 
--template_context 02_top_infrastructure.111
+-template_context 02_module.111
 
 -template_name global definitions package
 -template_start
@@ -64,7 +73,7 @@ parameter ui P_BITTIMEOUT = 200_00000; //20ms
 
 
 
--template_context 02_top_infrastructure.112
+-template_context 02_module.112
 
 -template_name import [uvm_pkg]::[*];
 -template_start
@@ -72,7 +81,7 @@ import [uvm_pkg]::[*];
 -template_end
 
 
--template_context 02_top_infrastructure.113
+-template_context 02_module.113
 
 -template_name initial begin block end
 -template_start
@@ -82,7 +91,7 @@ end
 -template_end
 
 
--template_context 02_top_infrastructure.114
+-template_context 02_module.114
 
 -template_name UVM config DB set virtual interface
 -template_start
@@ -91,7 +100,7 @@ uvm_config_db#(virtual [i/f name])::set([null],"[*]","[i/f instance label]", [i/
 
 
 
--template_context 02_top_infrastructure.115
+-template_context 02_module.115
 
 -template_name module port instantiation
 -template_start
@@ -100,7 +109,7 @@ uvm_config_db#(virtual [i/f name])::set([null],"[*]","[i/f instance label]", [i/
 
 
 
--template_context 02_top_infrastructure.116
+-template_context 02_module.116
 
 -template_name module/interface instantiation
 -template_start
