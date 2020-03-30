@@ -15,7 +15,8 @@
 -template_start
 class [env] extends uvm_env;
 
- `uvm_component_utils([env])
+ `uvm_component_utils_begin([env])
+ `uvm_component_utils_end
 
 //------------------------------------------
 // Data Members
@@ -76,7 +77,8 @@ endfunction
 -template_name agent generic
 -template_start
 class [agent name] extends [uvm_component];
- `uvm_component_utils([agent name])
+ `uvm_component_utils_begin([agent name])
+ `uvm_component_utils_end
 
  string m_name;
 
@@ -129,7 +131,8 @@ endfunction
 -template_start
 
 class [agent name] extends [uvm_agent];
- `uvm_component_utils([component name])
+ `uvm_component_utils_begin([component name])
+ `uvm_component_utils_end
 
  string m_name;
 
@@ -183,7 +186,8 @@ endfunction
 -template_start
 class [driver name] extends uvm_driver#([sequence item name]);
 
- `uvm_component_utils([driver name])
+ `uvm_component_utils_begin([driver name])
+ `uvm_component_utils_end
 
  uvm_analysis_port #([type]) [m_ap];
 
@@ -253,7 +257,8 @@ endfunction
 -template_start
 class [base test] extends uvm_test;
 
- `uvm_component_utils([base test])
+ `uvm_component_utils_begin([base test])
+ `uvm_component_utils_end
 
  [agent config] [agent config instance];
 
@@ -343,3 +348,46 @@ if (!uvm_config_db#([element type])::get(this, "", "[element type]", [element in
 //Example: export.connect(subcomponent.export);
 [export instance].connect([subcomponent.export instance]);
 -template_end
+
+
+
+-template_context 03_component.121
+
+-template_name configuration
+-template_start
+class [config name] extends uvm_object;
+ `uvm_object_utils_begin([config name])
+ `uvm_object_utils_end
+
+endclass
+-template_end
+
+
+
+-template_context 03_component.utils_hello.110
+
+-template_name uvm_component_utils_begin
+-template_start
+`uvm_component_utils_begin([])
+`uvm_component_utils_end
+-template_end
+#
+#
+#
+#-template_context 03_component.utils.111
+#
+#-template_name uvm_object_utils_begin/end([])
+#-template_start
+#`uvm_object_utils_begin([])
+#`uvm_object_utils_end
+#-template_end
+#
+#
+#
+#-template_context 03_component.utils.113
+#
+#-template_name uvm_field_utils_begin/end([])
+#-template_start
+#`uvm_field_utils_begin([])
+#`uvm_field_utils_end
+#-template_end
