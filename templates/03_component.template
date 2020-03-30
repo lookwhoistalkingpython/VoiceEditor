@@ -110,7 +110,7 @@ function void [agent name]::build_phase(uvm_phase phase);
  //Create sub components.
  [driver instance] = [driver name]::type_id::create("[driver instance]", this);
  [driver instance].[Virtual interface instance] = [virtual interface instance];
- [sequencer instance] = iic_type_id::create("[sequencer instance]", this);
+ [sequencer instance] = [sequencer name]::type_id::create("[sequencer instance]", this);
 
 endfunction
 
@@ -274,7 +274,7 @@ endfunction
 function void [base test]::build_phase(uvm_phase phase);
 
  if (!uvm_config_db#(virtual [interface name])::get(this, "", "[interface name]", [interface instance]))
-  `uvm_fatal("[base test]", "Could not get iic interface handle handle [interface name]")
+  `uvm_fatal("[base test]", "Could not get handle to interface [interface name]")
 
  // Initialise interface parameters
  // Example: m_iicIf1.setBusFrequency(50);      //kHz
@@ -293,4 +293,53 @@ function void [base test]::build_phase(uvm_phase phase);
  [env instance] = [env name]::type_id::create("[env instance]", this);
 
 endfunction
+-template_end
+
+
+
+-template_context 03_component.116
+
+-template_name type ID create component
+-template_start
+ [component instance] = [component name]::type_id::create("[component instance]",this);
+-template_end
+
+
+
+-template_context 03_component.117
+
+-template_name UVM config DB get element
+-template_start
+if (!uvm_config_db#([element type])::get(this, "", "[element type]", [element instance]))
+ `uvm_fatal("[parent name]","Could not get handle to [element type].")
+-template_end
+
+
+
+-template_context 03_component.118
+
+-template_name port-to-export
+-template_start
+//Example: comp1.port.connect(comp2.export);
+[component instance].[port name].connect([component instance].[export/import name]);
+-template_end
+
+
+
+-template_context 03_component.119
+
+-template_name port-to-port
+-template_start
+//Example: subcomponent.port.connect(port);
+[component instance].[port name].connect([port name]);
+-template_end
+
+
+
+-template_context 03_component.120
+
+-template_name export-to-export
+-template_start
+//Example: export.connect(subcomponent.export);
+[export instance].connect([subcomponent.export instance]);
 -template_end
