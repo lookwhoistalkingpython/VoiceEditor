@@ -177,7 +177,7 @@ endfunction
 
 
 
--template_context [00]_[top].[110]
+-template_context 03_component.114
 
 -template_name driver generic
 -template_start
@@ -247,4 +247,50 @@ endfunction
 
 
 
+-template_context 03_component.115
 
+-template_name base test
+-template_start
+class [base test] extends uvm_test;
+
+ `uvm_component_utils([base test])
+
+ [agent config] [agent config instance];
+
+ virtual [virtual interface name] [Virtual interface instance];
+
+ [env ] [env instance];
+
+ extern function new(string name = "[test base]", uvm_component parent = null);
+ extern function void build_phase(uvm_phase phase);
+
+endclass
+
+function [test base]::new(string name = "[test base] ", uvm_component parent = null);
+ super.new(name, parent);
+ assert(this.randomize()) else `uvm_fatal(name, "could not randomize test")
+endfunction
+
+function void [base test]::build_phase(uvm_phase phase);
+
+ if (!uvm_config_db#(virtual [interface name])::get(this, "", "[interface name]", [interface instance]))
+  `uvm_fatal("[base test]", "Could not get iic interface handle handle [interface name]")
+
+ // Initialise interface parameters
+ // Example: m_iicIf1.setBusFrequency(50);      //kHz
+
+ // Initialise agent configurations
+ [agent config instance] = [agent config name]::type_id::create("[agent config instance]");
+ [agent config instance].[agent interface instance] = [agent interface instance];
+
+ // Assign agent configurations into env configuration
+ [env config instance] = [env config name]::type_id::create("[env config instance]");
+ [env config instance].[agent config instance] = [agent config instance];
+
+
+ uvm_config_db#(ens config name)::set(this, "[env instance]", "[env config name]", [env config instance]);
+
+ [env instance] = [env name]::type_id::create("[env instance]", this);
+
+endfunction
+-template_end
