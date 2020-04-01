@@ -1,7 +1,7 @@
 import os
 import re
 
-searchString="class printer"
+searchString="Tcreator"
 #searchRoot=os.environ["VOICEEDITORROOT"]
 searchRoot="C:\Users\uvm\Projects\UVM"
 
