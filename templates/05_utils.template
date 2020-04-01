@@ -1,0 +1,18 @@
+-template_context 05_utils.110
+
+-template_name uvm_object_utils_begin/end([])
+-template_start
+`uvm_object_utils_begin([])
+`uvm_object_utils_end
+-template_end
+
+
+
+-template_context 05_utils.111
+
+-template_name uvm_field_utils_begin/end([])
+-template_start
+`uvm_field_utils_begin([])
+`uvm_field_utils_end
+-template_end
+

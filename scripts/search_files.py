@@ -1,15 +1,16 @@
 import os
 import re
 
-searchString="delete"
-searchRoot=os.environ["VOICEEDITORROOT"]
+searchString="class printer"
+#searchRoot=os.environ["VOICEEDITORROOT"]
+searchRoot="C:\Users\uvm\Projects\UVM"
 
 for path,directories,files in os.walk(searchRoot):
  if(path.endswith("snapshot")):
   continue
  for file in files:
   fullFileName=os.path.join(path,file)
-  if ( not fullFileName.endswith((".py",".txt",".template",".bat"))):
+  if ( not fullFileName.endswith((".py",".txt",".template",".bat", ".svh", ".sv"))):
    continue
   fileName=fullFileName
   try:

@@ -1,4 +1,2 @@
-class [config name] extends uvm_object;
- `uvm_object_utils([config name])
-
-endclass
+`uvm_field_utils_begin([])
+`uvm_field_utils_end
