@@ -76,6 +76,11 @@ class CmdEditFilterSnapshot(object):
     del self.fileToEditList[lineNumber-numberOfLinesAlreadyDeleted]
     numberOfLinesAlreadyDeleted=numberOfLinesAlreadyDeleted+1
    self.toggle_filter()
+  elif(command == "duplicate lines"):
+   for lineNumber in self.fileToEditListFilteredLineNumbers:
+    self.parent.append_line_to_line_operation_buffer(self.fileToEditList[lineNumber],lineNumber)
+    # CmdEditSnapshot.currentEditLineByFile.append(self.fileToEditList[lineNumber])
+   self.toggle_filter()
   elif(command == "comment out lines"):
    for lineNumber in self.fileToEditListFilteredLineNumbers:
     lineToCommentOut=self.fileToEditList[lineNumber]

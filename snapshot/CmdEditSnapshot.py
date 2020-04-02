@@ -488,4 +488,5 @@ class CmdEditSnapshot(object) :
 
 
 
-
+ def append_line_to_line_operation_buffer(self,line,lineNumber):
+  CmdEditSnapshot.lineOperationBuffer.append(self.fileToEditList[lineNumber])

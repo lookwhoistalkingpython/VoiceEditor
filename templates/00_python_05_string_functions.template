@@ -76,3 +76,12 @@ abs([])
 -template_start
 + "\n"
 -template_end
+
+
+
+-template_context 00_python.05_string_functions.123
+
+-template_name [string].isspace()
+-template_start
+[string].isspace()
+-template_end
