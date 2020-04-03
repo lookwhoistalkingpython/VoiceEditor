@@ -1,4 +1,5 @@
 import re
+import sys
 
 
 def object_macros():
@@ -121,7 +122,82 @@ def compare_macros():
  outputFileHandle.close()
 
 
+def copy_macros():
+ fileName= "..\scratch\copy_macros.txt"
+ try:
+  fileHandle=open(fileName, "r")
+ except:
+  print ("Unable to open file: ",fileName)
+  sys.exit(1)
+ else:
+  fileList=fileHandle.readlines()
+  fileHandle.close()
+
+ outputFileName=r'..\templates\05_macros.01_copy.template'
+ try:
+  outputFileHandle=open(outputFileName,"w")
+ except:
+  print ("Unable to open file for writing: ",outputFileName)
+  sys.exit(1)
+
+ index=110
+ for line in fileList:
+  if(line.isspace()):
+   continue
+  line=line.rstrip()
+  line=re.sub("LVALUE",r'[LVALUE]',line)
+  line=re.sub("RVALUE",r'[RVALUE]',line)
+  line=re.sub("NAME",r'[NAME]',line)
+  line=re.sub("RADIX",r'[RADIX]',line)
+  line=re.sub("COPIER=copier",r'[COPIER=copier]',line)
+  line=re.sub("POLICY=UVM_DEFAULT_POLICY",r'[POLICY=UVM_DEFAULT_POLICY]',line)
+  line=re.sub("`define ",'',line)
+  outputFileHandle.write("-template_context 05_macros.03_copy.%0d"%index+"\n")
+  outputFileHandle.write("-template_name %s"%line+"\n")
+  outputFileHandle.write("-template_start"+"\n")
+  outputFileHandle.write("`"+line+"\n")
+  outputFileHandle.write("-template_end"+"\n\n")
+  index+=1
+
+ outputFileHandle.close()
+
+
+
+def global_macros():
+ fileName= "..\scratch\global_macros.txt"
+ try:
+  fileHandle=open(fileName, "r")
+ except:
+  print ("Unable to open file: ",fileName)
+  sys.exit(1)
+ else:
+  fileList=fileHandle.readlines()
+  fileHandle.close()
+
+ outputFileName=r'..\templates\05_macros.04_global.template'
+ try:
+  outputFileHandle=open(outputFileName,"w")
+ except:
+  print ("Unable to open file for writing: ",outputFileName)
+  sys.exit(1)
+
+ index=110
+ for line in fileList:
+  if(line.isspace()):
+   continue
+  line=line.rstrip()
+  outputFileHandle.write("-template_context 05_macros.04_global.%0d"%index+"\n")
+  outputFileHandle.write("-template_name %s"%line+"\n")
+  outputFileHandle.write("-template_start"+"\n")
+  outputFileHandle.write("`"+line+"\n")
+  outputFileHandle.write("-template_end"+"\n\n")
+  index+=1
+
+ outputFileHandle.close()
+
 
 #object_macros()
 #callback_macros()
-compare_macros()
+#compare_macros()
+#copy_macros()
+global_macros()

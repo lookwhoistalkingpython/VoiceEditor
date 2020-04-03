@@ -77,6 +77,7 @@ class CmdEditFilterSnapshot(object):
     numberOfLinesAlreadyDeleted=numberOfLinesAlreadyDeleted+1
    self.toggle_filter()
   elif(command == "duplicate lines"):
+   self.parent.clear_line_operation_buffer()
    for lineNumber in self.fileToEditListFilteredLineNumbers:
     self.parent.append_line_to_line_operation_buffer(self.fileToEditList[lineNumber],lineNumber)
     # CmdEditSnapshot.currentEditLineByFile.append(self.fileToEditList[lineNumber])

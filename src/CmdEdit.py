@@ -490,3 +490,8 @@ class CmdEdit(object) :
 
  def append_line_to_line_operation_buffer(self,line,lineNumber):
   CmdEdit.lineOperationBuffer.append(self.fileToEditList[lineNumber])
+
+
+
+ def clear_line_operation_buffer(self):
+  CmdEdit.lineOperationBuffer=[]
