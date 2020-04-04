@@ -196,8 +196,98 @@ def global_macros():
  outputFileHandle.close()
 
 
+
+def messages_macros():
+ fileName= "..\scratch\messages_macros.txt"
+ try:
+  fileHandle=open(fileName, "r")
+ except:
+  print ("Unable to open file: ",fileName)
+  sys.exit(1)
+ else:
+  fileList=fileHandle.readlines()
+  fileHandle.close()
+
+ outputFileName=r'..\templates\05_macros.04_messages.template'
+ try:
+  outputFileHandle=open(outputFileName,"w")
+ except:
+  print ("Unable to open file for writing: ",outputFileName)
+  sys.exit(1)
+
+ index=110
+ for line in fileList:
+  if(line.isspace()):
+   continue
+  line=line.rstrip()
+  line=re.sub("`define ",'',line)
+  line=re.sub("RADIX",r'[RADIX]',line)
+  line=re.sub("ID",r'[ID]',line)
+  line=re.sub("MSG",r'[MSG]',line)
+  line=re.sub("VERBOSITY",r'[VERBOSITY]',line)
+  line=re.sub("FILE",r'[FILE]',line)
+  line=re.sub("SEVERITY",r'[SEVERITY]',line)
+  line=re.sub("RM",r'[RM]',line)
+  line=re.sub("LINE",r'[LINE]',line)
+  line=re.sub("RO",r'[RO]',line)
+  line=re.sub("RM = __uvm_msg",r'[RM = __uvm_msg]',line)
+  line=re.sub("ACTION=(UVM_LOG|UVM_RM_RECORD)",r'[ACTION=(UVM_LOG|UVM_RM_RECORD)]',line)
+  line=re.sub("VALUE",r'[VALUE]',line)
+  line=re.sub("LABEL=\"\"",r'[LABEL=""]',line)
+  line=re.sub("VAR",r'[VAR]',line)
+  #line=re.sub("RADIX",r'[RADIX]',line)
+  outputFileHandle.write("-template_context 05_macros.04_messages.%0d"%index+"\n")
+  outputFileHandle.write("-template_name %s"%line+"\n")
+  outputFileHandle.write("-template_start"+"\n")
+  outputFileHandle.write("`"+line+"\n")
+  outputFileHandle.write("-template_end"+"\n\n")
+  index+=1
+
+ outputFileHandle.close()
+
+
+
+def packer_macros():
+ fileName= "..\scratch\packer_macros.txt"
+ try:
+  fileHandle=open(fileName, "r")
+ except:
+  print ("Unable to open file: ",fileName)
+  sys.exit(1)
+ else:
+  fileList=fileHandle.readlines()
+  fileHandle.close()
+
+ outputFileName=r'..\templates\05_macros.05_packer.template'
+ try:
+  outputFileHandle=open(outputFileName,"w")
+ except:
+  print ("Unable to open file for writing: ",outputFileName)
+  sys.exit(1)
+
+ index=110
+ for line in fileList:
+  if(line.isspace()):
+   continue
+  line=line.rstrip()
+  line=re.sub("`define ",'',line)
+  line=re.sub("VAR",r'[VAR]',line)
+  line=re.sub("SIZE",r'[SIZE]',line)
+  line=re.sub("TYPE",r'[TYPE]',line)
+  outputFileHandle.write("-template_context 05_macros.05_packer.%0d"%index+"\n")
+  outputFileHandle.write("-template_name %s"%line+"\n")
+  outputFileHandle.write("-template_start"+"\n")
+  outputFileHandle.write("`"+line+"\n")
+  outputFileHandle.write("-template_end"+"\n\n")
+  index+=1
+
+ outputFileHandle.close()
+
+
 #object_macros()
 #callback_macros()
 #compare_macros()
 #copy_macros()
-global_macros()
+#global_macros()
+#messages_macros()
+packer_macros()
