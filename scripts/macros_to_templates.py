@@ -208,7 +208,7 @@ def messages_macros():
   fileList=fileHandle.readlines()
   fileHandle.close()
 
- outputFileName=r'..\templates\05_macros.04_messages.template'
+ outputFileName=r'..\templates\05_macros.05_messages.template'
  try:
   outputFileHandle=open(outputFileName,"w")
  except:
@@ -236,7 +236,7 @@ def messages_macros():
   line=re.sub("LABEL=\"\"",r'[LABEL=""]',line)
   line=re.sub("VAR",r'[VAR]',line)
   #line=re.sub("RADIX",r'[RADIX]',line)
-  outputFileHandle.write("-template_context 05_macros.04_messages.%0d"%index+"\n")
+  outputFileHandle.write("-template_context 05_macros.05_messages.%0d"%index+"\n")
   outputFileHandle.write("-template_name %s"%line+"\n")
   outputFileHandle.write("-template_start"+"\n")
   outputFileHandle.write("`"+line+"\n")
@@ -258,7 +258,49 @@ def packer_macros():
   fileList=fileHandle.readlines()
   fileHandle.close()
 
- outputFileName=r'..\templates\05_macros.05_packer.template'
+ outputFileName=r'..\templates\05_macros.06_packer.template'
+ try:
+  outputFileHandle=open(outputFileName,"w")
+ except:
+  print ("Unable to open file for writing: ",outputFileName)
+  sys.exit(1)
+
+ index=110
+ for line in fileList:
+  if(line.isspace()):
+   continue
+  line=line.rstrip()
+  m=re.search("unpack",line)
+  line=re.sub("`define ",'',line)
+  line=re.sub("VAR",r'[VAR]',line)
+  line=re.sub("SIZE",r'[SIZE]',line)
+  line=re.sub("TYPE",r'[TYPE]',line)
+  if(m):
+   outputFileHandle.write("-template_context 05_macros.06_packer.00_unpack.%0d"%index+"\n")
+  else:
+   outputFileHandle.write("-template_context 05_macros.06_packer.01_pack.%0d"%index+"\n")
+  outputFileHandle.write("-template_name %s"%line+"\n")
+  outputFileHandle.write("-template_start"+"\n")
+  outputFileHandle.write("`"+line+"\n")
+  outputFileHandle.write("-template_end"+"\n\n")
+  index+=1
+
+ outputFileHandle.close()
+
+
+
+def phase_macros():
+ fileName= "..\scratch\phase_macros.txt"
+ try:
+  fileHandle=open(fileName, "r")
+ except:
+  print ("Unable to open file: ",fileName)
+  sys.exit(1)
+ else:
+  fileList=fileHandle.readlines()
+  fileHandle.close()
+
+ outputFileName=r'..\templates\05_macros.07_phase.template'
  try:
   outputFileHandle=open(outputFileName,"w")
  except:
@@ -271,10 +313,10 @@ def packer_macros():
    continue
   line=line.rstrip()
   line=re.sub("`define ",'',line)
-  line=re.sub("VAR",r'[VAR]',line)
-  line=re.sub("SIZE",r'[SIZE]',line)
-  line=re.sub("TYPE",r'[TYPE]',line)
-  outputFileHandle.write("-template_context 05_macros.05_packer.%0d"%index+"\n")
+  line=re.sub("PHASE",r'[PHASE]',line)
+  line=re.sub("COMP",r'[COMP]',line)
+  line=re.sub("PREFIX",r'[PREFIX]',line)
+  outputFileHandle.write("-template_context 05_macros.07_phase.%0d"%index+"\n")
   outputFileHandle.write("-template_name %s"%line+"\n")
   outputFileHandle.write("-template_start"+"\n")
   outputFileHandle.write("`"+line+"\n")
@@ -284,10 +326,188 @@ def packer_macros():
  outputFileHandle.close()
 
 
+def print_macros():
+ fileName= "..\scratch\print_macros.txt"
+ try:
+  fileHandle=open(fileName, "r")
+ except:
+  print ("Unable to open file: ",fileName)
+  sys.exit(1)
+ else:
+  fileList=fileHandle.readlines()
+  fileHandle.close()
+
+ outputFileName=r'..\templates\05_macros.08_print.template'
+ try:
+  outputFileHandle=open(outputFileName,"w")
+ except:
+  print ("Unable to open file for writing: ",outputFileName)
+  sys.exit(1)
+
+ index=110
+ for line in fileList:
+  if(line.isspace()):
+   continue
+  line=line.rstrip()
+  line=re.sub("`define ",'',line)
+  line=re.sub("NAME",r'[NAME]',line)
+  line=re.sub("VALUE",r'[VALUE]',line)
+  line=re.sub("SIZE",r'[SIZE]',line)
+  line=re.sub("RADIX=UVM_NORADIX",r'[RADIX=UVM_NORADIX]',line)
+  line=re.sub("VALUE_TYPE=integral",r'[VALUE_TYPE=integral]',line)
+  line=re.sub("PRINTER=printer",r'[PRINTER=printer]',line)
+  line=re.sub("RECURSION_POLICY=UVM_DEFAULT_POLICY",r'[RECURSION_POLICY=UVM_DEFAULT_POLICY]',line)
+  line=re.sub("ARRAY_TYPE",r'[ARRAY_TYPE]',line)
+  line=re.sub("PHASE",r'[PHASE]',line)
+  outputFileHandle.write("-template_context 05_macros.08_print.%0d"%index+"\n")
+  outputFileHandle.write("-template_name %s"%line+"\n")
+  outputFileHandle.write("-template_start"+"\n")
+  outputFileHandle.write("`"+line+"\n")
+  outputFileHandle.write("-template_end"+"\n\n")
+  index+=1
+
+ outputFileHandle.close()
+
+
+def record_macros():
+ fileName= r"..\scratch\record_macros.txt"
+ try:
+  fileHandle=open(fileName, "r")
+ except:
+  print ("Unable to open file: ",fileName)
+  sys.exit(1)
+ else:
+  fileList=fileHandle.readlines()
+  fileHandle.close()
+
+ outputFileName=r'..\templates\05_macros.09_record.template'
+ try:
+  outputFileHandle=open(outputFileName,"w")
+ except:
+  print ("Unable to open file for writing: ",outputFileName)
+  sys.exit(1)
+
+ index=110
+ for line in fileList:
+  if(line.isspace()):
+   continue
+  line=line.strip()
+  line=re.sub(r"\S*`define ",'',line)
+  line=re.sub("NAME",r'[NAME]',line)
+  line=re.sub("VALUE",r'[VALUE]',line)
+  line=re.sub("RADIX = UVM_NORADIX",r'[RADIX = UVM_NORADIX]',line)
+  line=re.sub("ARG",r'[ARG]',line)
+  line=re.sub("TYPE",r'[TYPE]',line)
+  allMatches=re.finditer(r'\bT\b',line)
+  for match in allMatches:
+   start=match.start(0)
+   line=line[:start]+"[T]"+line[start+1:]
+
+  outputFileHandle.write("-template_context 05_macros.09_record.%0d"%index+"\n")
+  outputFileHandle.write("-template_name %s"%line+"\n")
+  outputFileHandle.write("-template_start"+"\n")
+  outputFileHandle.write("`"+line+"\n")
+  outputFileHandle.write("-template_end"+"\n\n")
+  index+=1
+
+ outputFileHandle.close()
+
+
+def reg_defines():
+ fileName= r"..\scratch\reg_defines.txt"
+ try:
+  fileHandle=open(fileName, "r")
+ except:
+  print ("Unable to open file: ",fileName)
+  sys.exit(1)
+ else:
+  fileList=fileHandle.readlines()
+  fileHandle.close()
+
+ outputFileName=r'..\templates\05_macros.10_reg_defines.template'
+ try:
+  outputFileHandle=open(outputFileName,"w")
+ except:
+  print ("Unable to open file for writing: ",outputFileName)
+  sys.exit(1)
+
+ index=110
+ for line in fileList:
+  if(line.isspace()):
+   continue
+  line=line.strip()
+  line=re.sub(r"\S*`define ",'',line)
+
+  outputFileHandle.write("-template_context 05_macros.10_reg_defines.%0d"%index+"\n")
+  outputFileHandle.write("-template_name %s"%line+"\n")
+  outputFileHandle.write("-template_start"+"\n")
+  outputFileHandle.write("`"+line+"\n")
+  outputFileHandle.write("-template_end"+"\n\n")
+  index+=1
+
+ outputFileHandle.close()
+
+
+
+def resources_defines():
+ fileName= r"..\scratch\resources_macros.txt"
+ try:
+  fileHandle=open(fileName, "r")
+ except:
+  print ("Unable to open file: ",fileName)
+  sys.exit(1)
+ else:
+  fileList=fileHandle.readlines()
+  fileHandle.close()
+
+ outputFileName=r'..\templates\05_macros.11_resources.template'
+ try:
+  outputFileHandle=open(outputFileName,"w")
+ except:
+  print ("Unable to open file for writing: ",outputFileName)
+  sys.exit(1)
+
+ index=110
+ for line in fileList:
+  if(line.isspace()):
+   continue
+  line=line.strip()
+  line=re.sub(r"\S*`define ",'',line)
+  line=re.sub("SUCCESS",r'[SUCCESS]',line)
+  line=re.sub("RSRC",r'[RSRC]',line)
+  line=re.sub("VAL",r'[VAL]',line)
+  line=re.sub("OBJ=null",r'[OBJ=null]',line)
+
+
+  outputFileHandle.write("-template_context 05_macros.11_resources.%0d"%index+"\n")
+  outputFileHandle.write("-template_name %s"%line+"\n")
+  outputFileHandle.write("-template_start"+"\n")
+  outputFileHandle.write("`"+line+"\n")
+  outputFileHandle.write("-template_end"+"\n\n")
+  index+=1
+
+ outputFileHandle.close()
+
+
+
+
+
+
+
+
+
+
+
 #object_macros()
 #callback_macros()
 #compare_macros()
 #copy_macros()
 #global_macros()
 #messages_macros()
-packer_macros()
+#packer_macros()
+#phase_macros()
+#print_macros()
+#record_macros()
+#reg_defines()
+#resources_defines()
+

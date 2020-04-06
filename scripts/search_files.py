@@ -1,7 +1,7 @@
 import os
 import re
 
-searchString="Tcreator"
+searchString="UVM_PHASE_SCHEDULE"
 #searchRoot=os.environ["VOICEEDITORROOT"]
 searchRoot="C:\Users\uvm\Projects\UVM"
 
