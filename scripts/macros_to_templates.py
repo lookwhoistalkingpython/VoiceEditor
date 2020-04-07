@@ -490,9 +490,126 @@ def resources_defines():
 
 
 
+def sequences_macros():
+ fileName= r"..\scratch\sequences_macros.txt"
+ try:
+  fileHandle=open(fileName, "r")
+ except:
+  print ("Unable to open file: ",fileName)
+  sys.exit(1)
+ else:
+  fileList=fileHandle.readlines()
+  fileHandle.close()
+
+ outputFileName=r'..\templates\05_macros.12_sequences.template'
+ try:
+  outputFileHandle=open(outputFileName,"w")
+ except:
+  print ("Unable to open file for writing: ",outputFileName)
+  sys.exit(1)
+
+ index=110
+ for line in fileList:
+  if(line.isspace()):
+   continue
+  line=line.strip()
+  line=re.sub(r"\S*`define ",'',line)
+  line=re.sub("SEQ_OR_ITEM",r'[SEQ_OR_ITEM]',line)
+  line=re.sub(r"SEQR=get_sequencer\(\)",r'[SEQR=get_sequencer()]',line)
+  line=re.sub("PRIORITY=-1",r'[PRIORITY=-1]',line)
+  line=re.sub("CONSTRAINTS={}",r'[CONSTRAINTS={}]',line)
+  line=re.sub("TYPE",r'[TYPE]',line)
+  line=re.sub("LIBTYPE",r'[LIBTYPE]',line)
+  line=re.sub("SEQUENCER",r'[SEQUENCER]',line)
+
+  outputFileHandle.write("-template_context 05_macros.12_sequences.%0d"%index+"\n")
+  outputFileHandle.write("-template_name %s"%line+"\n")
+  outputFileHandle.write("-template_start"+"\n")
+  outputFileHandle.write("`"+line+"\n")
+  outputFileHandle.write("-template_end"+"\n\n")
+  index+=1
+
+ outputFileHandle.close()
 
 
 
+def tlm_macros():
+ fileName= r"..\scratch\tlm_macros.txt"
+ try:
+  fileHandle=open(fileName, "r")
+ except:
+  print ("Unable to open file: ",fileName)
+  sys.exit(1)
+ else:
+  fileList=fileHandle.readlines()
+  fileHandle.close()
+
+ outputFileName=r'..\templates\05_macros.13_tlm.template'
+ try:
+  outputFileHandle=open(outputFileName,"w")
+ except:
+  print ("Unable to open file for writing: ",outputFileName)
+  sys.exit(1)
+
+ index=110
+ for line in fileList:
+  if(line.isspace()):
+   continue
+  line=line.strip()
+  line=re.sub(r"\S*`define ",'',line)
+  line=re.sub("SFX",r'[SFX]',line)
+  line=re.sub("imp",r'[imp]',line)
+  line=re.sub("TYPE",r'[TYPE]',line)
+  line=re.sub("arg",r'[arg]',line)
+  line=re.sub("REQ",r'[REQ]',line)
+  line=re.sub("rsp_arg",r'[rsp_arg]',line)
+  line=re.sub("req_arg",r'[req_arg]',line)
+
+
+
+  outputFileHandle.write("-template_context 05_macros.13_tlm.%0d"%index+"\n")
+  outputFileHandle.write("-template_name %s"%line+"\n")
+  outputFileHandle.write("-template_start"+"\n")
+  outputFileHandle.write("`"+line+"\n")
+  outputFileHandle.write("-template_end"+"\n\n")
+  index+=1
+
+ outputFileHandle.close()
+
+
+
+def undefine_macros():
+ fileName= r"..\scratch\undefine_macros.txt"
+ try:
+  fileHandle=open(fileName, "r")
+ except:
+  print ("Unable to open file: ",fileName)
+  sys.exit(1)
+ else:
+  fileList=fileHandle.readlines()
+  fileHandle.close()
+
+ outputFileName=r'..\templates\05_macros.14_undefine.template'
+ try:
+  outputFileHandle=open(outputFileName,"w")
+ except:
+  print ("Unable to open file for writing: ",outputFileName)
+  sys.exit(1)
+
+ index=110
+ for line in fileList:
+  if(line.isspace()):
+   continue
+  line=line.strip()
+
+  outputFileHandle.write("-template_context 05_macros.14_undefine.%0d"%index+"\n")
+  outputFileHandle.write("-template_name %s"%line+"\n")
+  outputFileHandle.write("-template_start"+"\n")
+  outputFileHandle.write("`"+line+"\n")
+  outputFileHandle.write("-template_end"+"\n\n")
+  index+=1
+
+ outputFileHandle.close()
 
 
 
@@ -510,4 +627,6 @@ def resources_defines():
 #record_macros()
 #reg_defines()
 #resources_defines()
-
+#sequences_macros()
+#tlm_macros()
+undefine_macros()
