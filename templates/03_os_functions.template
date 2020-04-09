@@ -106,3 +106,9 @@ os.walk([])
 -template_start
 os.path.normpath([])
 -template_end
+
+-template_context 03_library_modules.os_functions.127
+-template_name [voiceeditorroot]=os.environ["VOICEEDITORROOT"]
+-template_start
+[voiceeditorroot]=os.environ["VOICEEDITORROOT"]
+-template_end

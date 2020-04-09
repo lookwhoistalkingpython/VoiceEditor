@@ -1,0 +1,58 @@
+-template_context 09_git.110
+-template_name git add [--all]
+-template_start
+git add [--all]
+-template_end
+
+
+
+-template_context 09_git.111
+
+-template_name git commit
+-template_start
+git commit
+-template_end
+
+
+-template_context 09_git.112
+
+-template_name git diff-files [-1] [--base] [-2] [--ours] [-3] [--theirs]
+-template_start
+git diff-files [-1] [--base] [-2] [--ours] [-3] [--theirs]
+-template_end
+
+
+
+-template_context 09_git.113
+fax
+-template_name git checkout [-b] [branch name]
+-template_start
+git checkout [-b] [branch name]
+-template_end
+
+
+
+-template_context 09_git.114
+
+-template_name git checkout [branch name] -- [file]
+-template_start
+git checkout [branch name] -- [file]
+-template_end
+
+
+
+-template_context 09_git.115
+
+-template_name git merge [branch name]
+-template_start
+git merge [branch name]
+-template_end
+
+
+
+-template_context 09_git.116
+
+-template_name git branch
+-template_start
+git branch
+-template_end
