@@ -56,3 +56,12 @@ git merge [branch name]
 -template_start
 git branch
 -template_end
+
+
+
+-template_context 09_git.117
+
+-template_name git status
+-template_start
+git status
+-template_end

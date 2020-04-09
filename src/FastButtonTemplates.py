@@ -155,9 +155,9 @@ class FastButtonTemplates(FastButtonRenderButtons):
 #    matchComment=re.match(r'\s*#',line)
 #    if (matchComment):
 #     continue
-    matchEmptyLine=re.match(r'\s*$',line)
-    if (matchEmptyLine):
-     continue
+#    matchEmptyLine=re.match(r'\s*$',line)
+#    if (matchEmptyLine):
+#     continue
 
     matchTemplateContext=re.match(r'\s*-template_context\s+(?P<templateContext>[\w.]+)',line)
     if (matchTemplateContext):

@@ -62,6 +62,8 @@ class CmdDosRecentFiles(object):
    return 0
 
   for file in self.recentFilesList:
+   if(file.endswith("duplicate_move_delete.py")):
+    continue
    recentFileListFile.write("%s\n"%file)
 
   recentFileListFile.close()
