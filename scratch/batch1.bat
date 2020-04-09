@@ -21,10 +21,12 @@ git commit -m "Changes imported from UVM branch."
 git status
 
 :: Merge Branch
-::git checkout python
-::git checkout -b merge_branch
-::git checkout merge_branch
-::git status
+git checkout python
+git checkout -b merge_branch
+git checkout merge_branch
+git status
+
+
 
 
 
