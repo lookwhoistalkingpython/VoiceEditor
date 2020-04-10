@@ -56,10 +56,10 @@ class CmdDosListDirectoryBase(object) :
   operations.append((3,self.path,".."))
   operations.append((3,self.path,"create new file"))
   operations.append((3,self.path,"create new directory"))
-  operations.append((3,self.path,"duplicate file(s)"))
-  operations.append((3,self.path,"move file(s)"))
-  operations.append((3,self.path,"delete file(s)"))
-  operations.append((3,self.path,"insert file(s)"))
+#  operations.append((3,self.path,"duplicate file(s)"))
+#  operations.append((3,self.path,"move file(s)"))
+#  operations.append((3,self.path,"delete file(s)"))
+#  operations.append((3,self.path,"insert file(s)"))
   for file in directory_contents :
    full_name= os.path.join(self.path, file )
    if os.path.isdir(full_name):

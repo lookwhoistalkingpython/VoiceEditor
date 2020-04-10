@@ -25,7 +25,7 @@ from CmdDosListDirectoryBase import CmdDosListDirectoryBase
 from CmdEdit import CmdEdit
 from CmdDosCreateNewFile import CmdDosCreateNewFile
 from CmdDosCreateNewDirectory import CmdDosCreateNewDirectory
-from CmdDosCopyMoveDeletePasteFile import CmdDosCopyMoveDeletePasteFile
+#from CmdDosCopyMoveDeletePasteFile import CmdDosCopyMoveDeletePasteFile
 import VoiceEditorSettings
 from CmdDosRecentFiles import CmdDosRecentFiles
 from CmdDosRecentDirectories import CmdDosRecentDirectories
@@ -52,8 +52,8 @@ class CmdDosListDirectory(CmdDosListDirectoryBase) :
               self.scaleBox,
                   self.viewBox,
                       self.statusBox)
-  self.cmdDosCopyMoveDeletePasteFile=\
-      CmdDosCopyMoveDeletePasteFile(self,self.files,self.cmdBox,self.editBox,self.viewBox,self.statusBox)
+#  self.cmdDosCopyMoveDeletePasteFile=\
+#      CmdDosCopyMoveDeletePasteFile(self,self.files,self.cmdBox,self.editBox,self.viewBox,self.statusBox)
   self.cmdDosRecentFiles=CmdDosRecentFiles(self,self.recentFilesList,self.allTheBoxes)
   self.cmdDosRecentDirectories=CmdDosRecentDirectories(self,self.recentDirectoriesList,self.allTheBoxes)
   self.cmdDosFavouriteFiles=CmdDosFavouriteFiles(self,self.statusBox)
@@ -100,11 +100,6 @@ class CmdDosListDirectory(CmdDosListDirectoryBase) :
   choiceTag=self.fileList[index][2]
   #choiceType=self.fileList[index][0]
   if(self.fileList[index][2]==".."):
-#   m=re.match(r'C:\\Program Files\\[^\\]+$',self.path)
-#   if(m):
-#    self.statusBox.Text=\
-#    "Cannot ascend into C:\Program Files. Please use shortcut in favourite directories instead."
-#   else:
    desiredPath = os.path.join(self.path, "..")
   elif(self.fileList[index][2]=="create new file"):
    self.viewBox.Text="please  enter file name in command box"
@@ -112,9 +107,9 @@ class CmdDosListDirectory(CmdDosListDirectoryBase) :
   elif(self.fileList[index][2]=="create new directory"):
    self.viewBox.Text="please  enter directory name in command box"
    self.create_new_directory()
-  elif(re.match(r'(duplicate|move|delete|insert) file',choiceTag)):
-   self.commandState="idle"
-   self.nextCommand = self.cmdDosCopyMoveDeletePasteFile(choiceTag)
+#  elif(re.match(r'(duplicate|move|delete|insert) file',choiceTag)):
+#   self.commandState="idle"
+#   self.nextCommand = self.cmdDosCopyMoveDeletePasteFile(choiceTag)
   elif(self.fileList[index][0]==1):
    desiredPath = os.path.join(self.path,self.fileList[index][2])
   elif(self.fileList[index][0]==0):
