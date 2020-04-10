@@ -1,5 +1,5 @@
 run\help.txt
-dragon\python_custom_words.txt
+dragon\custom_words.txt
 src\VoiceEditorSettings.py
 .gitignore
 run\variableBackupList.txt
