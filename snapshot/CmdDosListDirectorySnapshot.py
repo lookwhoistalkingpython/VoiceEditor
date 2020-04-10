@@ -25,7 +25,7 @@ from CmdDosListDirectoryBaseSnapshot import CmdDosListDirectoryBaseSnapshot
 from CmdEditSnapshot import CmdEditSnapshot
 from CmdDosCreateNewFileSnapshot import CmdDosCreateNewFileSnapshot
 from CmdDosCreateNewDirectorySnapshot import CmdDosCreateNewDirectorySnapshot
-#from CmdDosCopyMoveDeletePasteFileSnapshot import CmdDosCopyMoveDeletePasteFileSnapshot
+from CmdDosCopyMoveDeletePasteFileSnapshot import CmdDosCopyMoveDeletePasteFileSnapshot
 import VoiceEditorSettingsSnapshot
 from CmdDosRecentFilesSnapshot import CmdDosRecentFilesSnapshot
 from CmdDosRecentDirectoriesSnapshot import CmdDosRecentDirectoriesSnapshot
@@ -52,8 +52,8 @@ class CmdDosListDirectorySnapshot(CmdDosListDirectoryBaseSnapshot) :
               self.scaleBox,
                   self.viewBox,
                       self.statusBox)
-#  self.cmdDosCopyMoveDeletePasteFile=\
-#      CmdDosCopyMoveDeletePasteFileSnapshot(self,self.files,self.cmdBox,self.editBox,self.viewBox,self.statusBox)
+  self.cmdDosCopyMoveDeletePasteFile=\
+      CmdDosCopyMoveDeletePasteFileSnapshot(self,self.files,self.cmdBox,self.editBox,self.viewBox,self.statusBox)
   self.cmdDosRecentFiles=CmdDosRecentFilesSnapshot(self,self.recentFilesList,self.allTheBoxes)
   self.cmdDosRecentDirectories=CmdDosRecentDirectoriesSnapshot(self,self.recentDirectoriesList,self.allTheBoxes)
   self.cmdDosFavouriteFiles=CmdDosFavouriteFilesSnapshot(self,self.statusBox)
@@ -112,9 +112,9 @@ class CmdDosListDirectorySnapshot(CmdDosListDirectoryBaseSnapshot) :
   elif(self.fileList[index][2]=="create new directory"):
    self.viewBox.Text="please  enter directory name in command box"
    self.create_new_directory()
-#  elif(re.match(r'(duplicate|move|delete|insert) file',choiceTag)):
-#   self.commandState="idle"
-#   self.nextCommand = self.cmdDosCopyMoveDeletePasteFile(choiceTag)
+  elif(re.match(r'(duplicate|move|delete|insert) file',choiceTag)):
+   self.commandState="idle"
+   self.nextCommand = self.cmdDosCopyMoveDeletePasteFile(choiceTag)
   elif(self.fileList[index][0]==1):
    desiredPath = os.path.join(self.path,self.fileList[index][2])
   elif(self.fileList[index][0]==0):

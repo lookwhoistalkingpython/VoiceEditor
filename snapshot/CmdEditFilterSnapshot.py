@@ -25,6 +25,8 @@ from VoiceEditorSettingsSnapshot import VoiceEditorSettingsSnapshot
 class CmdEditFilterSnapshot(object):
 
  lastFilterUsed= "TBD"
+ filterList=[]
+ filterDefinitionFileHasBeenRead=0
 
 
  def __init__(self,parent,fileToEditList,currentEditLine,allTheBoxes):
@@ -38,10 +40,13 @@ class CmdEditFilterSnapshot(object):
   self.fileToEditList=fileToEditList
   self.currentEditLine=currentEditLine
   self.parent=parent
-  self.filterList=[]
   self.isFilterEnabled=0
   self.fileToEditListFiltered=[]
   self.fileToEditListFilteredLineNumbers=[]
+
+  if ( not CmdEditFilterSnapshot.filterDefinitionFileHasBeenRead):
+   self.read_predefined_filters()
+   CmdEditFilterSnapshot.filterDefinitionFileHasBeenRead=1
 
 
  def __call__(self):
@@ -50,6 +55,7 @@ class CmdEditFilterSnapshot(object):
 
   if(filterOptionsReturnValue<0):
    return self.parent
+
 
   return self
 
@@ -69,6 +75,12 @@ class CmdEditFilterSnapshot(object):
    for lineNumber in self.fileToEditListFilteredLineNumbers:
     del self.fileToEditList[lineNumber-numberOfLinesAlreadyDeleted]
     numberOfLinesAlreadyDeleted=numberOfLinesAlreadyDeleted+1
+   self.toggle_filter()
+  elif(command == "duplicate lines"):
+   self.parent.clear_line_operation_buffer()
+   for lineNumber in self.fileToEditListFilteredLineNumbers:
+    self.parent.append_line_to_line_operation_buffer(self.fileToEditList[lineNumber],lineNumber)
+    # CmdEditSnapshot.currentEditLineByFile.append(self.fileToEditList[lineNumber])
    self.toggle_filter()
   elif(command == "comment out lines"):
    for lineNumber in self.fileToEditListFilteredLineNumbers:
@@ -93,15 +105,14 @@ class CmdEditFilterSnapshot(object):
   elif(command.isdigit() and not self.isFilterEnabled):
    #command contains list index of filter to apply
    selectedFilter=int(command)
-   if(selectedFilter<0 or selectedFilter>len(self.filterList)-1):
-    print("self.filterList",self.filterList)
+   if(selectedFilter<0 or selectedFilter>len(CmdEditFilterSnapshot.filterList)-1):
     self.statusBox.Text=\
         "Selected predefined filter option is out of range: %d"%selectedFilter
    else:
     if(selectedFilter==0):
      self.filterToApply=CmdEditFilterSnapshot.lastFilterUsed
     else:
-     self.filterToApply=self.filterList[selectedFilter]
+     self.filterToApply=CmdEditFilterSnapshot.filterList[selectedFilter]
     self.apply_filter()
     self.isFilterEnabled=1
     self.nextCommand=self
@@ -123,13 +134,6 @@ class CmdEditFilterSnapshot(object):
 
   self.viewBox.Text=""
 
-  try:
-   filterDefinitionFile=open\
-       (VoiceEditorSettingsSnapshot.lineFilterDefinitionFileName,"r")
-  except:
-   self.statusBox.Text="Unable to open file: %s"\
-       %VoiceEditorSettingsSnapshot.lineFilterDefinitionFileName
-   return -1
 
   message= """
   \r\n
@@ -141,34 +145,14 @@ class CmdEditFilterSnapshot(object):
 
   index=0
 
-  #offer as a choice the last filter that was used
-  self.filterList.append(CmdEditFilterSnapshot.lastFilterUsed+"#last filter used")
-  self.viewBox.AppendText("    %4d %s \r\n"%(0,CmdEditFilterSnapshot.lastFilterUsed+"#last filter used"))
+  #Add last filter to the list of filters if it is not already on the list
+  if (CmdEditFilterSnapshot.lastFilterUsed!="TBD"):
+   CmdEditFilterSnapshot.filterList[0]=CmdEditFilterSnapshot.lastFilterUsed
+   if ( not CmdEditFilterSnapshot.lastFilterUsed in CmdEditFilterSnapshot.filterList[1:len(CmdEditFilterSnapshot.filterList)]):
+    CmdEditFilterSnapshot.filterList.append(CmdEditFilterSnapshot.lastFilterUsed)
 
-  for filterDefinitionFileLine in filterDefinitionFile:
-
-   #Ignore empty lines
-   copyOfFilterDefinitionFileLine=filterDefinitionFileLine
-   if(not copyOfFilterDefinitionFileLine.strip()):
-    continue
-
-   #Display line filter file in view window
-   self.viewBox.AppendText("    %4d %s \r\n"%(index+1,filterDefinitionFileLine))
-   index=index+1
-
-   #Everything before the ultimate hash sign is the filter definition.
-   matchLastPositionOfHashSign=\
-       re.search(r'#', filterDefinitionFileLine[::-1])
-   if(matchLastPositionOfHashSign):
-    positionOfLastHashSign=\
-        len(filterDefinitionFileLine)-1-matchLastPositionOfHashSign.start()
-   else:
-    positionOfLastHashSign=len(filterDefinitionFileLine)-1
-
-   #Store all filter definitions retrieved from file.
-   nonCommentPartOfFilterDefinitionLine=\
-       filterDefinitionFileLine[0:positionOfLastHashSign]
-   self.filterList.append(nonCommentPartOfFilterDefinitionLine)
+  for index,filterDefinition in enumerate(CmdEditFilterSnapshot.filterList):
+   self.viewBox.AppendText("    %4d %s \r\n"%(index,CmdEditFilterSnapshot.filterList[index]))
 
   return 0
 
@@ -205,4 +189,37 @@ class CmdEditFilterSnapshot(object):
   self.nextCommand=self.parent
 
 
+ def read_predefined_filters(self):
 
+  try:
+   filterDefinitionFile=open\
+       (VoiceEditorSettingsSnapshot.lineFilterDefinitionFileName,"r")
+  except:
+   self.statusBox.Text="Unable to open file: %s"\
+       %VoiceEditorSettingsSnapshot.lineFilterDefinitionFileName
+   return
+
+  for filterDefinitionFileLine in filterDefinitionFile:
+
+   #Ignore empty lines
+   copyOfFilterDefinitionFileLine=filterDefinitionFileLine
+   if(not copyOfFilterDefinitionFileLine.strip()):
+    continue
+
+   #Everything before the ultimate hash sign is the filter definition.
+   matchLastPositionOfHashSign=\
+       re.search(r'#', filterDefinitionFileLine[::-1])
+   if(matchLastPositionOfHashSign):
+    positionOfLastHashSign=\
+        len(filterDefinitionFileLine)-1-matchLastPositionOfHashSign.start()
+   else:
+    positionOfLastHashSign=len(filterDefinitionFileLine)-1
+
+   #Store all filter definitions retrieved from file.
+   nonCommentPartOfFilterDefinitionLine=\
+       filterDefinitionFileLine[0:positionOfLastHashSign]
+   CmdEditFilterSnapshot.filterList.append(nonCommentPartOfFilterDefinitionLine)
+
+
+  #Reserve the top slot for the last filter
+  CmdEditFilterSnapshot.filterList.insert(0,"TBD #Last filter used")

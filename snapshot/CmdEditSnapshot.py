@@ -81,10 +81,7 @@ class CmdEditSnapshot(object) :
   self.cmdEditUpdateScale=CmdEditUpdateScaleSnapshot(self.scaleBox,self.editBox,self.statusBox)
   self.cmdEditLineBreak=CmdEditLineBreakSnapshot\
       (self.fileToEditList,self.cmdBox,self.editBox,self.viewBox,self.statusBox)
-#  self.cmdEditFilter=CmdEditFilterSnapshot\
-#      (self,self.fileToEditList,self.currentEditLine,self.allTheBoxes)
   self.cmdEditFilter=None
-#  self.statusBox.Text = "%s (Saved)"%self.fullFileName
   self.voiceEditor.fastButtonAreaHandler.reset()
 
 
@@ -491,4 +488,10 @@ class CmdEditSnapshot(object) :
 
 
 
+ def append_line_to_line_operation_buffer(self,line,lineNumber):
+  CmdEditSnapshot.lineOperationBuffer.append(self.fileToEditList[lineNumber])
 
+
+
+ def clear_line_operation_buffer(self):
+  CmdEditSnapshot.lineOperationBuffer=[]
