@@ -1,7 +1,7 @@
 import os
 import re
 
-searchString="append"
+searchString="subprocess"
 searchRoot=os.environ["VOICEEDITORROOT"]
 
 for path,directories,files in os.walk(searchRoot):
