@@ -242,3 +242,9 @@ seq\\short form for sequence
 
 #System Verilog
 <=\\blocking assignment
+.sv\\dot system very body file
+.svh\\dot system very header file
+
+#FILE SYSTEM OPERATIONS
+..\\Double dot
+
