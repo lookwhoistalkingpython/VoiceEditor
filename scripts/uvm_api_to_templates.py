@@ -25,6 +25,10 @@ def process_line(path,file,level1Index,level2Index,line):
 def output_to_template_file():
 
  templateIndex=0
+ directoryCount= 0
+ fileCount={}
+ directoryList={}
+ fileIndex={}
 
  outputFileName=r'..\templates\06_uvm_api.template'
  try:
@@ -34,12 +38,24 @@ def output_to_template_file():
   sys.exit(1)
 
  for taskType,directory,file,level1Index,level2Index,templateName,line in sorted(methodList):
+ #for taskType,directory,file,templateName,line in sorted(methodList):
+
+  print ("for",taskType,directory,file)
 
   level1Name=directory
   level2Name=file.replace(".svh","")
 
+  if (directory not in directoryList):
+   directoryList[directory]=directoryCount
+   directoryCount+=1
+   fileCount[directory]=0
+
+  if (file not in fileIndex):
+   fileIndex[file]=fileCount[directory]
+   fileCount[directory]+=1
+
   outputFileHandle.write("-template_context 06_uvm_api.%02d_%s.%02d_%s.%s.%03d"%\
-  (level1Index,level1Name,level2Index,level2Name,taskType,templateIndex)+"\n")
+  (directoryList[directory],level1Name,fileIndex[file],level2Name,taskType,templateIndex)+"\n")
   #outputFileHandle.write("-template_name %s %s"%(taskType,templateName)+"\n")
   outputFileHandle.write("-template_name %s"%(templateName)+"\n")
   outputFileHandle.write("-template_start"+"\n")
@@ -67,12 +83,12 @@ for path,directories,files in os.walk(searchRoot):
    print ("Unable to open file: ", fullFileName)
    sys.exit(1)
   else:
-   fileList=fileHandle.readlines()
+   fileIndex=fileHandle.readlines()
    fileHandle.close()
   filterExpressionComment=r'^\s*//'
   filterExpression=r"\b(function|task)\s*(\w+\s+)?(\w+)\s*\(.*\)\s*;"
   filterExpressionEndClass=r'^\s*endclass\b'
-  for line in fileList :
+  for line in fileIndex :
    line=line.rstrip()
    matchComment=re.search(filterExpressionComment,line)
    if (matchComment):
