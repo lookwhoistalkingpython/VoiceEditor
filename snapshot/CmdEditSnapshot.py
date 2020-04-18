@@ -1,4 +1,5 @@
 #
+
 #Copyright 2020 Carsten Thiele
 #
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
@@ -17,7 +18,7 @@
 #SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-
+import io
 import string
 import re
 import shutil
@@ -320,6 +321,7 @@ class CmdEditSnapshot(object) :
    self.fileToEdit.seek(0)
    self.fileToEdit.truncate()
    for line in self.fileToEditList:
+    line.replace(r'\r',r'')
     self.fileToEdit.write(line+"\n")
    #self.fileToEdit.close()
    self.close_file()
@@ -381,7 +383,7 @@ class CmdEditSnapshot(object) :
    return
 
   try:
-   self.fileToEdit=open(self.fullFileName, mode)
+   self.fileToEdit=io.open(self.fullFileName, mode,newline='\n')
   except:
    self.statusBox.Text="unable to open file: "+self.fullFileName+" mode: "+ mode
    self.fileToEdit=None

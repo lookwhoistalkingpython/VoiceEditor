@@ -56,7 +56,6 @@ def output_to_template_file():
 
   outputFileHandle.write("-template_context 06_uvm_api.%02d_%s.%02d_%s.%s.%03d"%\
   (directoryList[directory],level1Name,fileIndex[file],level2Name,taskType,templateIndex)+"\n")
-  #outputFileHandle.write("-template_name %s %s"%(taskType,templateName)+"\n")
   outputFileHandle.write("-template_name %s"%(templateName)+"\n")
   outputFileHandle.write("-template_start"+"\n")
   #outputFileHandle.write(taskType+" "+templateName+"\n")

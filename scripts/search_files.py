@@ -1,9 +1,9 @@
 import os
 import re
 
-searchString="UVM_PHASE_SCHEDULE"
-#searchRoot=os.environ["VOICEEDITORROOT"]
-searchRoot="C:\Users\uvm\Projects\UVM"
+searchString="subprocess"
+searchRoot=os.environ["VOICEEDITORROOT"]
+#searchRoot="C:\Users\uvm\Projects\UVM"
 
 for path,directories,files in os.walk(searchRoot):
  if(path.endswith("snapshot")):

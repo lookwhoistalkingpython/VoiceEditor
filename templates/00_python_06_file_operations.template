@@ -5,7 +5,15 @@ os.chdir([directory path])
 for file in glob.glob(r'*.py'):
 -template_end
 
--template_context 00_python.06_file_operations.111
+-template_context 00_python.06_file_operations.1111
+-template_name perform shell command
+-template_start
+os.chdir([directory path])
+shellCommand=r'[command]'
+shellOutput=subprocess.check_output(shellCommand,shell=True)
+-template_end
+
+-template_context 00_python.06_file_operations.1112
 -template_name perform shell command on each file in directory
 -template_start
 os.chdir([directory path])
