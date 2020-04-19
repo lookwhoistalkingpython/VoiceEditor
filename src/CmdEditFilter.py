@@ -78,6 +78,7 @@ class CmdEditFilter(object):
    self.toggle_filter()
   elif(command == "duplicate lines"):
    self.parent.clear_line_operation_buffer()
+   print("self.fileToEditListFilteredLineNumbers",self.fileToEditListFilteredLineNumbers)
    for lineNumber in self.fileToEditListFilteredLineNumbers:
     self.parent.append_line_to_line_operation_buffer(self.fileToEditList[lineNumber],lineNumber)
     # CmdEdit.currentEditLineByFile.append(self.fileToEditList[lineNumber])
