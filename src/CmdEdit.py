@@ -152,7 +152,7 @@ class CmdEdit(object) :
    self.displayFile()
   elif(re.match(r'\s*(duplicate|yank|insert)\s+line',command)):
    self.save_file()
-   self.cmdEditDuplicateYankInsertLines(command,self.currentEditLine)
+   self.cmdEditDuplicateYankInsertLines(command,self.currentEditLine,CmdEdit.lineOperationBuffer)
    self.displayFile()
   elif(command=="save file"):
    self.save_file()
