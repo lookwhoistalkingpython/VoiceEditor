@@ -28,7 +28,6 @@ class CmdEditDuplicateYankInsertLines(object):
   self.editBox=editBox
   self.viewBox=viewBox
   self.statusBox=statusBox
-#  self.lineOperationBuffer=parent.lineOperationBuffer
   self.operation = ""
   self.rangeStart=0
   self.rangeEnd=0
