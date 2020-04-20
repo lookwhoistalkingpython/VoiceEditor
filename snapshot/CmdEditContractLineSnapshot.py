@@ -155,8 +155,6 @@ class CmdEditContractLineSnapshot(object):
 
  def remove_brackets(self,contractedString):
 
-  contracted=1
-
   matchStringStartsWithSquareBracket=re.match(r'\s*[[]',contractedString)
   if(matchStringStartsWithSquareBracket):
    contractedString=contractedString.replace("[","",1)

@@ -28,15 +28,15 @@ class CmdEditDuplicateYankInsertLinesSnapshot(object):
   self.editBox=editBox
   self.viewBox=viewBox
   self.statusBox=statusBox
-  self.lineOperationBuffer=parent.lineOperationBuffer
   self.operation = ""
   self.rangeStart=0
   self.rangeEnd=0
   self.parent=parent
 
- def __call__(self,command,currentEditLine):
+ def __call__(self,command,currentEditLine,lineOperationBuffer):
 
   self.currentEditLine=currentEditLine
+  self.lineOperationBuffer=lineOperationBuffer
 
   matchCurrentLine=\
       re.match(
