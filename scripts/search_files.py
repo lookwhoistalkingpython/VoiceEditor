@@ -1,7 +1,7 @@
 import os
 import re
 
-searchString="subprocess"
+searchString="[T]emplate"
 searchRoot=os.environ["VOICEEDITORROOT"]
 #searchRoot="C:\Users\uvm\Projects\UVM"
 

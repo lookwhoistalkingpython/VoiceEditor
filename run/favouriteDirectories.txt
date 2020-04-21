@@ -19,3 +19,4 @@ C:\Users\uvm\Projects\iic\iic_tb\sequences
 C:\Users\uvm\Projects\iic\iic_tb\sim
 C:\Users\uvm\Projects\iic\iic_tb\tb
 C:\Users\uvm\Projects\iic\iic_tb\test
+C:\Users\uvm\Projects\iic\scripts

@@ -82,3 +82,10 @@ del [][[e]]
 -template_start
 [[]].setdefault([key][,default_value])
 -template_end
+
+-template_context 00_python.01_dictionary_functions.124
+-template_name dict([])
+-template_start
+dict([])
+-template_end
+
