@@ -321,9 +321,7 @@ class CmdEditSnapshot(object) :
    self.fileToEdit.seek(0)
    self.fileToEdit.truncate()
    for line in self.fileToEditList:
-    line.replace(r'\r',r'')
     self.fileToEdit.write(line+"\n")
-   #self.fileToEdit.close()
    self.close_file()
    self.statusBox.Text="%s (Saved)"%self.fullFileName
 
@@ -383,7 +381,10 @@ class CmdEditSnapshot(object) :
    return
 
   try:
-   self.fileToEdit=io.open(self.fullFileName, mode,newline='\n')
+   if(VoiceEditorSettingsSnapshot.useUNIXStyleLineEnding):
+    self.fileToEdit=io.open(self.fullFileName, mode,newline='\n')
+   else:
+    self.fileToEdit=io.open(self.fullFileName, mode)
   except:
    self.statusBox.Text="unable to open file: "+self.fullFileName+" mode: "+ mode
    self.fileToEdit=None

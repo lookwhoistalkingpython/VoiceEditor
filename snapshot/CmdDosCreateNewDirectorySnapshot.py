@@ -34,7 +34,7 @@ class CmdDosCreateNewDirectorySnapshot(object) :
 
  def processThisCommand(self,command):
   self.nextCommand=self
-  if(command=="list directory"):
+  if(command=="list directory" or command=="escape command"):
    self.listDirectory.processThisCommand(command)
    self.nextCommand=self.listDirectory
    return self.nextCommand

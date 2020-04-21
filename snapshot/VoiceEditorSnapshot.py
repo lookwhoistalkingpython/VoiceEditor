@@ -360,6 +360,8 @@ class VoiceEditorSnapshot(Form):
                     self.ActiveControl = self.editBox
             if(not isinstance(self.cmdBoxHandler.cmd, CmdEditSubstituteSnapshot)):
                 self.cmdBox.Text=""
+        if key == Keys.Escape:
+            self.cmdBoxHandler.processCmd("escape command")
 
         if key == Keys.Up:
             self.cmdBoxHandler.processCmd("up")

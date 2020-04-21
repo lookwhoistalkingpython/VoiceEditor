@@ -56,6 +56,12 @@ class CmdEditSubstitute(object):
 
   self.nextCommand=self
 
+  if (command=="escape command"):
+   self.parent.displayFile()
+   self.statusBox.Text="OK"
+   self.cmdBox.Text=""
+   return self.parent
+
   if(not self.oldStringHasBeenEntered):
    CmdEditSubstitute.oldString=command
    self.oldStringHasBeenEntered=True
