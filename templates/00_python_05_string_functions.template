@@ -113,3 +113,12 @@ abs([])
 \n
 -template_end
 
+
+
+-template_context 00_python.05_string_functions.127
+
+-template_name "[]"%([])
+-template_start
+"[]"%([])
+-template_end
+
