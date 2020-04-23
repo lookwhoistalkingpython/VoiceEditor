@@ -85,3 +85,31 @@ abs([])
 -template_start
 [string].isspace()
 -template_end
+
+
+
+-template_context 00_python.05_string_functions.124
+
+-template_name %s
+-template_start
+%s
+-template_end
+
+
+
+-template_context 00_python.05_string_functions.125
+
+-template_name %d
+-template_start
+%d
+-template_end
+
+
+
+-template_context 00_python.05_string_functions.126
+
+-template_name \n
+-template_start
+\n
+-template_end
+
