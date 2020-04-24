@@ -8,3 +8,5 @@ run\predefinedLineFilters.txt
 scratch\scratch1.py
 scratch\scratch2.py
 scripts\search_files.py
+C:\Users\uvm\Projects\iic\iic_tb\tb\top.sv
+C:\Users\uvm\Projects\iic\iic_tb\sim\compile.log
