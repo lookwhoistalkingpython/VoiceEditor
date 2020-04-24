@@ -151,7 +151,7 @@ can either be a Unicode string, a Latin-1 encoded string or an AST
 object. Refer to the ast module documentation for information on how
 to work with AST objects.     The filename argument should give the
 file from which the code was read; pass some recognizable value if it
-wasn’t read from a file ('<string>' is commonly used).     The mode
+wasnt read from a file ('<string>' is commonly used).     The mode
 argument specifies what kind of code must be compiled; it can be
 'exec' if source consists of a sequence of statements, 'eval' if it
 consists of a single expression, or 'single' if it consists of a
@@ -178,7 +178,7 @@ input must be terminated by at least one newline character. This is to
 facilitate detection of incomplete and complete statements in the code
 module.     Warning     It is possible to crash the Python interpreter
 with a sufficiently large/complex string when compiling to an AST
-object due to stack depth limitations in Python’s AST compiler.
+object due to stack depth limitations in Pythons AST compiler.
 Changed in version 2.3: The flags and dont_inherit arguments were
 added.     Changed in version 2.6: Support for compiling AST objects.
 Changed in version 2.7: Allowed use of Windows and Mac newlines. Also
@@ -205,7 +205,7 @@ delattr(object, name)
 -template_end
 -template_doc_string_start
     This is a relative of setattr(). The arguments are an object and a
-string. The string must be the name of one of the object’s attributes.
+string. The string must be the name of one of the objects attributes.
 The function deletes the named attribute, provided the object allows
 it. For example, delattr(x, 'foobar') is equivalent to del x.foobar.
 class dict(**kwarg) class dict(mapping, **kwarg) class dict(iterable,
@@ -228,18 +228,18 @@ method will be called and must return the list of attributes. This
 allows objects that implement a custom __getattr__() or
 __getattribute__() function to customize the way dir() reports their
 attributes.     If the object does not provide __dir__(), the function
-tries its best to gather information from the object’s __dict__
+tries its best to gather information from the objects __dict__
 attribute, if defined, and from its type object. The resulting list is
 not necessarily complete, and may be inaccurate when the object has a
 custom __getattr__().     The default dir() mechanism behaves
 differently with different types of objects, as it attempts to produce
 the most relevant, rather than complete, information:         If the
-object is a module object, the list contains the names of the module’s
+object is a module object, the list contains the names of the modules
 attributes.         If the object is a type or class object, the list
 contains the names of its attributes, and recursively of the
 attributes of its bases.         Otherwise, the list contains the
-object’s attributes’ names, the names of its class’s attributes, and
-recursively of the attributes of its class’s base classes.     The
+objects attributes names, the names of its classs attributes, and
+recursively of the attributes of its classs base classes.     The
 resulting list is sorted alphabetically. For example:     >>> import
 struct     >>> dir()   # show the names in the module namespace
 ['__builtins__', '__doc__', '__name__', 'struct']     >>> dir(struct)
@@ -308,7 +308,7 @@ provided, locals can be any mapping object.     Changed in version
 expression argument is parsed and evaluated as a Python expression
 (technically speaking, a condition list) using the globals and locals
 dictionaries as global and local namespace. If the globals dictionary
-is present and lacks ‘__builtins__’, the current globals are copied
+is present and lacks __builtins__, the current globals are copied
 into globals before expression is parsed. This means that expression
 normally has full access to the standard __builtin__ module and
 restricted environments are propagated. If the locals dictionary is
@@ -320,7 +320,7 @@ x = 1     >>> print eval('x+1')     2     This function can also be
 used to execute arbitrary code objects (such as those created by
 compile()). In this case pass a code object instead of a string. If
 the code object has been compiled with 'exec' as the mode argument,
-eval()’s return value will be None.     Hints: dynamic execution of
+eval()s return value will be None.     Hints: dynamic execution of
 statements is supported by the exec statement. Execution of statements
 from a file is supported by the execfile() function. The globals() and
 locals() functions returns the current global and local dictionary,
@@ -355,7 +355,7 @@ function locals() below: modifications to the default locals
 dictionary should not be attempted. Pass an explicit locals dictionary
 if you need to see effects of the code on locals after function
 execfile() returns. execfile() cannot be used reliably to modify a
-function’s locals.
+functions locals.
 -template_doc_string_end
 
 -template_context 05_built_in_functions.126
@@ -365,9 +365,9 @@ file(name[, mode[, buffering]])
 -template_end
 -template_doc_string_start
     Constructor function for the file type, described further in
-section File Objects. The constructor’s arguments are the same as
+section File Objects. The constructors arguments are the same as
 those of the open() built-in function described below.     When
-opening a file, it’s preferable to use open() instead of invoking this
+opening a file, its preferable to use open() instead of invoking this
 constructor directly. file is more suited to type testing (for
 example, writing isinstance(f, file)).     New in version 2.2.
 -template_doc_string_end
@@ -395,7 +395,7 @@ string, it must contain a possibly signed decimal or floating point
 number, possibly embedded in whitespace. The argument may also be
 [+|-]nan or [+|-]inf. Otherwise, the argument may be a plain or long
 integer or a floating point number, and a floating point number with
-the same value (within Python’s floating point precision) is returned.
+the same value (within Pythons floating point precision) is returned.
 If no argument is given, returns 0.0.     Note     When passing in a
 string, values for NaN and Infinity may be returned, depending on the
 underlying C library. Float accepts the strings nan, inf and -inf for
@@ -432,7 +432,7 @@ getattr(object, name[, default])
 -template_end
 -template_doc_string_start
     Return the value of the named attribute of object. name must be a
-string. If the string is the name of one of the object’s attributes,
+string. If the string is the name of one of the objects attributes,
 the result is the value of that attribute. For example, getattr(x,
 'foobar') is equivalent to x.foobar. If the named attribute does not
 exist, default is returned if provided, otherwise AttributeError is
@@ -458,7 +458,7 @@ hasattr(object, name)
 -template_end
 -template_doc_string_start
     The arguments are an object and a string. The result is True if
-the string is the name of one of the object’s attributes, False if
+the string is the name of one of the objects attributes, False if
 not. (This is implemented by calling getattr(object, name) and seeing
 whether it raises an exception or not.)
 -template_doc_string_end
@@ -620,7 +620,7 @@ len(s)
 may be a sequence (such as a string, bytes, tuple, list, or range) or
 a collection (such as a dictionary, set, or frozen set). class
 list([iterable])     Return a list whose items are the same and in the
-same order as iterable’s items. iterable may be either a sequence, a
+same order as iterables items. iterable may be either a sequence, a
 container that supports iteration, or an iterator object. If iterable
 is already a list, a copy is made and returned, similar to
 iterable[:]. For instance, list('abc') returns ['a', 'b', 'c'] and
@@ -769,9 +769,9 @@ open(name[, mode[, buffering]])
 -template_doc_string_start
     Open a file, returning an object of the file type described in
 section File Objects. If the file cannot be opened, IOError is raised.
-When opening a file, it’s preferable to use open() instead of invoking
+When opening a file, its preferable to use open() instead of invoking
 the file constructor directly.     The first two arguments are the
-same as for stdio’s fopen(): name is the file name to be opened, and
+same as for stdios fopen(): name is the file name to be opened, and
 mode is a string indicating how the file is to be opened.     The most
 commonly-used values of mode are 'r' for reading, 'w' for writing
 (truncating the file if it already exists), and 'a' for appending
@@ -782,9 +782,9 @@ it defaults to 'r'. The default is to use text mode, which may convert
 back on reading. Thus, when opening a binary file, you should append
 'b' to the mode value to open the file in binary mode, which will
 improve portability. (Appending 'b' is useful even on systems that
-don’t treat binary and text files differently, where it serves as
+dont treat binary and text files differently, where it serves as
 documentation.) See below for more possible values of mode.     The
-optional buffering argument specifies the file’s desired buffer size:
+optional buffering argument specifies the files desired buffer size:
 0 means unbuffered, 1 means line buffered, any other positive value
 means use a buffer of (approximately) that size (in bytes). A negative
 buffering means to use the system default, which is usually line
@@ -793,7 +793,7 @@ omitted, the system default is used. 2     Modes 'r+', 'w+' and 'a+'
 open the file for updating (reading and writing); note that 'w+'
 truncates the file. Append 'b' to the mode to open the file in binary
 mode, on systems that differentiate between binary and text files; on
-systems that don’t have this distinction, adding the 'b' has no
+systems that dont have this distinction, adding the 'b' has no
 effect.     In addition to the standard fopen() values mode may be 'U'
 or 'rU'. Python is usually built with universal newlines support;
 supplying 'U' opens the file as a text file, but lines may be
@@ -823,7 +823,7 @@ object, or the value of the byte when the argument is an 8-bit string.
 For example, ord('a') returns the integer 97, ord(u'\u2020') returns
 8224. This is the inverse of chr() for 8-bit strings and of unichr()
 for unicode objects. If a unicode argument is given and Python was
-built with UCS2 Unicode, then the character’s code point must be in
+built with UCS2 Unicode, then the characters code point must be in
 the range [0..65535] inclusive; otherwise the string length is two,
 and a TypeError will be raised.
 -template_doc_string_end
@@ -886,7 +886,7 @@ del self._x         x = property(getx, setx, delx, "I'm the 'x'
 property.")     If c is an instance of C, c.x will invoke the getter,
 c.x = value will invoke the setter and del c.x the deleter.     If
 given, doc will be the docstring of the property attribute. Otherwise,
-the property will copy fget’s docstring (if it exists). This makes it
+the property will copy fgets docstring (if it exists). This makes it
 possible to create read-only properties easily using property() as a
 decorator:     class Parrot(object):         def __init__(self):
 self._voltage = 100000         @property         def voltage(self):
@@ -906,7 +906,7 @@ equivalent to the first example. Be sure to give the additional
 functions the same name as the original property (x in this case.)
 The returned property object also has the attributes fget, fset, and
 fdel corresponding to the constructor arguments.     New in version
-2.2.     Changed in version 2.5: Use fget’s docstring if no doc given.
+2.2.     Changed in version 2.5: Use fgets docstring if no doc given.
 Changed in version 2.6: The getter, setter, and deleter attributes
 were added.
 -template_doc_string_end
@@ -984,8 +984,8 @@ useful if you have edited the module source file using an external
 editor and want to try out the new version without leaving the Python
 interpreter. The return value is the module object (the same as the
 module argument).     When reload(module) is executed:         Python
-modules’ code is recompiled and the module-level code reexecuted,
-defining a new set of objects which are bound to names in the module’s
+modules code is recompiled and the module-level code reexecuted,
+defining a new set of objects which are bound to names in the modules
 dictionary. The init function of extension modules is not called a
 second time.         As with all other objects in Python the old
 objects are only reclaimed after their reference counts drop to zero.
@@ -994,13 +994,13 @@ changed objects.         Other references to the old objects (such as
 names external to the module) are not rebound to refer to the new
 objects and must be updated in each namespace where they occur if that
 is desired.     There are a number of other caveats:     When a module
-is reloaded, its dictionary (containing the module’s global variables)
+is reloaded, its dictionary (containing the modules global variables)
 is retained. Redefinitions of names will override the old definitions,
 so this is generally not a problem. If the new version of a module
 does not define a name that was defined by the old version, the old
-definition remains. This feature can be used to the module’s advantage
+definition remains. This feature can be used to the modules advantage
 if it maintains a global table or cache of objects — with a try
-statement it can test for the table’s presence and skip its
+statement it can test for the tables presence and skip its
 initialization if desired:     try:         cache     except
 NameError:         cache = {}     It is generally not very useful to
 reload built-in or dynamically loaded modules. Reloading sys,
@@ -1061,8 +1061,8 @@ closest multiple of 10 to the power minus ndigits; if two multiples
 are equally close, rounding is done away from 0 (so, for example,
 round(0.5) is 1.0 and round(-0.5) is -1.0).     Note     The behavior
 of round() for floats can be surprising: for example, round(2.675, 2)
-gives 2.67 instead of the expected 2.68. This is not a bug: it’s a
-result of the fact that most decimal fractions can’t be represented
+gives 2.67 instead of the expected 2.68. This is not a bug: its a
+result of the fact that most decimal fractions cant be represented
 exactly as a float. See Floating Point Arithmetic: Issues and
 Limitations for more information. class set([iterable])     Return a
 new set object, optionally with elements taken from iterable. set is a
@@ -1165,7 +1165,7 @@ sum(iterable[, start])
 -template_end
 -template_doc_string_start
     Sums start and the items of an iterable from left to right and
-returns the total. start defaults to 0. The iterable’s items are
+returns the total. start defaults to 0. The iterables items are
 normally numbers, and the start value is not allowed to be a string.
 For some use cases, there are good alternatives to sum(). The
 preferred, fast way to concatenate a sequence of strings is by calling
@@ -1227,7 +1227,7 @@ tuple([iterable])
 -template_end
 -template_doc_string_start
     Return a tuple whose items are the same and in the same order as
-iterable’s items. iterable may be a sequence, a container that
+iterables items. iterable may be a sequence, a container that
 supports iteration, or an iterator object. If iterable is already a
 tuple, it is returned unchanged. For instance, tuple('abc') returns
 ('a', 'b', 'c') and tuple([1, 2, 3]) returns (1, 2, 3). If no argument
@@ -1336,7 +1336,7 @@ the same values as the corresponding list, without actually storing
 them all simultaneously. The advantage of xrange() over range() is
 minimal (since xrange() still has to create the values when asked for
 them) except when a very large range is used on a memory-starved
-machine or when all of the range’s elements are never used (such as
+machine or when all of the ranges elements are never used (such as
 when the loop is usually terminated with break). For more information
 on xrange objects, see XRange Type and Sequence Types — str, unicode,
 list, tuple, bytearray, buffer, xrange.     CPython implementation
