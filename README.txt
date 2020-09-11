@@ -1,26 +1,41 @@
 # VoiceEditor
+
+
 INSTALLATION
 
-    Demo video at : https://youtu.be/Mb6CaYB4yjI 
+0. Demo video at : https://youtu.be/Mb6CaYB4yjI 
 
-    Install IronPython https://ironpython.net/download/
+1. Install IronPython https://ironpython.net/download/
 
-    Download latest VoiceEditor release and unpack.
+2. Download latest VoiceEditor release and unpack.
 
-Define user env variable that points to installation directory eg :
+3. Define user env variable that points to installation directory eg :
 
 VOICEEDITORROOT = C:%HOMEPATH%\Projects\VoiceEditorUVM
 
-    Set/add the following environment variables : IRONPYTHONPATH += %VOICEEDITORROOT%\src IRONPYTHONPATH += %VOICEEDITORROOT%\src_uvm
+4. If you don't already haveit, then create a user env variable called IRONPYTHONPATH 
+   and set/add the following directories:
+   
+IRONPYTHONPATH += %VOICEEDITORROOT%\src;%VOICEEDITORROOT%\src_uvm
 
-    cd %VOICEEDITORROOT%\run Run create_snapshot BAT script : run_create_snapshot.bat
+5. Create the snapshot of the source files. The application is run by
+   invoking the snapshot. This way the editor's source can be modified
+   using the editor itself.
 
-    In the same directory as 4), invoke the editor : run.bat
+> cd %VOICEEDITORROOT%\run 
+> run_create_snapshot.bat
 
+6. In the same directory as 5), invoke the editor : 
+
+> run.bat
+
+
+
+EDITOR GUI ELEMENTS AND USAGE
 
 -- Command Box
 
-To place the cursor into this box press the button labelled "command".
+To place the cursor into this box click the button labelled "command".
 
 Similar to VI's command mode. All commands are issued by typing them into this box and pressing return.
 
@@ -32,7 +47,7 @@ Furthermore, the up arrow key will cause the editor to scroll up and down key wi
 
 –- Edit Box
 
-To place the cursor into this box press the button labelled "edit".
+To place the cursor into this box click the button labelled "edit".
 
 The up arrow key will cause the editor to scroll up and the down arrow key will cause it to scroll down.
 
@@ -79,11 +94,6 @@ interpreted as a line number and causes the view box display to jump to the give
 filter button the second time causes an exit from the function.
 
 The template button gives access to the library of templates defined in the %VOICEEDITORROOT%\templates directory.
-
-The templates\09_tb.template template file is earmarked for containing a particular test environments IntelliSense 
-information. The templates\09_tb.template file that comes as part of this release is specific to the 
-www.github.com/lookwhoistalkinguvm/symbol_gen_demo project. The contents of this file needs to be generated 
-dynamically using a script for each specific project. Such a script is not part of the release.
 
 
 TIP
