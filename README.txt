@@ -5,7 +5,7 @@ INSTALLATION
 
     Install IronPython https://ironpython.net/download/
 
-    Download latest VoiceEditorUVM release and unpack.
+    Download latest VoiceEditor release and unpack.
 
 Define user env variable that points to installation directory eg :
 
@@ -28,6 +28,7 @@ Entering a number into this box and pressing return causes the editor to jump to
 
 When the cursor is placed in this box the mouse wheel can be used to scroll up and down in the file. Furthermore, the up arrow key will cause the editor to scroll up and down key will cause it to scroll down.
 
+
 –- Edit Box
 
 To place the cursor into this box press the button labelled "edit".
@@ -37,6 +38,7 @@ The up arrow key will cause the editor to scroll up and the down arrow key will 
 This box is the only means of editing the file. The view box only displays the file content. Once an edit has been performed inside the edit box it can be committed into the flow of text by pressing the insert button or by pressing return. However, pressing return will also insert a new line.
 
 When scrolling above the start of the file new lines will automatically be added. It is not possible to scroll beyond the end of the file. To add lines to the end of the file you have to press return when at the ultimate line.
+
 
 -- Various Buttons down the middle of the editor GUI.
 
