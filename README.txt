@@ -5,29 +5,48 @@ INSTALLATION
 
 0. Demo video at : https://youtu.be/Mb6CaYB4yjI 
 
+   Videos explaining how to use the editor in detail:
+   
+   Overview                                                              : https://youtu.be/q2dGTqJOZzo
+   File System Navigation                                                : https://youtu.be/Nq3ZISrUzuE
+   Line Editing Part 1        (Navigation inside a line)                 : https://youtu.be/zzX21ky1RqI
+   Line Editing Part 2        (Committing lines)                         : https://youtu.be/l8iZXbDjIVE
+   Line Editing Part 3        (Cammelback variables)                     : https://youtu.be/v6m2CXSS2XA
+   File Navigation Part1      (up/down,line number, marking)             : https://youtu.be/XgYenz8Idvo
+   File Navigation Part2      (scrolling, flip-flop-ing)                 : https://youtu.be/lHA9r26u5WI
+   Line Filtering             (custom andpre-defined filters)            : https://youtu.be/sXjlnJrJdB8
+   Line Filtering Part 2      (opertions on filtered lines)              : https://youtu.be/2kuQFT7HFCk
+   Substitution               (with and without using regex)             : https://youtu.be/SKofDfuHnzE
+   Templates                  (single/multiline, available)              : https://youtu.be/_qkdqAotLjI
+   Templates Part2            (Template help,indetation,voice shortcuts) : https://youtu.be/_Fv2ARFDtS8
+   Templates Part3            (How to create new templates)              : https://youtu.be/DbnviniTUTk
+   Customizations             (Customizing VoiceEditor)                  : https://youtu.be/dmdew28x_CQ
+   Installation               (How to install)                           : https://youtu.be/fEAnl1uHiak
+
+
 1. Install IronPython https://ironpython.net/download/
 
 2. Download latest VoiceEditor release and unpack.
 
 3. Define user env variable that points to installation directory eg :
 
-VOICEEDITORROOT = C:%HOMEPATH%\Projects\VoiceEditorUVM
+   VOICEEDITORROOT = C:%HOMEPATH%\Projects\VoiceEditorUVM
 
 4. If you don't already haveit, then create a user env variable called IRONPYTHONPATH 
    and set/add the following directories:
    
-IRONPYTHONPATH += %VOICEEDITORROOT%\src;%VOICEEDITORROOT%\src_uvm
+   IRONPYTHONPATH += %VOICEEDITORROOT%\src;%VOICEEDITORROOT%\src_uvm
 
 5. Create the snapshot of the source files. The application is run by
    invoking the snapshot. This way the editor's source can be modified
    using the editor itself.
 
-> cd %VOICEEDITORROOT%\run 
-> run_create_snapshot.bat
+   > cd %VOICEEDITORROOT%\run 
+   > run_create_snapshot.bat
 
 6. In the same directory as 5), invoke the editor : 
 
-> run.bat
+   > run.bat
 
 
 
