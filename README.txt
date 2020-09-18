@@ -1,5 +1,12 @@
 # VoiceEditor
 
+The idea behind this editor is to be easily controllable by voice when using Dragon Naturally Speaking.
+It helps in navigating around a file, the file system and it provides a type of intellisense feature
+that makes chunks of parameterisable code clickable into the tesxt.
+
+The application is written in IronPython, which is a version of Python that is part of the .NET family
+of languages, making it easy to create Microsoft Windows GUIs.
+
 
 INSTALLATION
 
