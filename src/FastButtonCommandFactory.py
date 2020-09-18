@@ -20,6 +20,7 @@
 from FastButtonTemplates import FastButtonTemplates
 from FastButtonListVariables import FastButtonListVariables
 from FastButtonMarkers import FastButtonMarkers
+from FastButtonListTokens import FastButtonListTokens
 
 class FastButtonCommandFactory(object):
 
@@ -39,6 +40,8 @@ class FastButtonCommandFactory(object):
    return FastButtonTemplates(self.voiceEditor)
   elif (fastCommandString=="fast button list markers"):
    return FastButtonMarkers(self.voiceEditor)
+  elif (fastCommandString=="fast button list tokens"):
+   return FastButtonListTokens(self.voiceEditor)
   else:
    self.voiceEditor.statusBox.Text="Unknown fast button: %s"%fastCommandString
    return None

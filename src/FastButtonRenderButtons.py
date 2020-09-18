@@ -37,6 +37,7 @@ class FastButtonRenderButtons(object):
 
  def render_fast_button_area(self):
 
+
   self.destroy_fast_buttons_and_boxes()
   self.create_control_buttons()
   self.create_variable_buttons_and_boxes()

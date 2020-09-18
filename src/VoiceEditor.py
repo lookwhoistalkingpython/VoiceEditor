@@ -1,3 +1,4 @@
+
 #
 #Copyright 2020 Carsten Thiele
 #
@@ -18,6 +19,7 @@
 
 
 import sys
+
 import clr
 import CmdBoxHandler
 from VoiceEditorSettings import VoiceEditorSettings
@@ -203,6 +205,12 @@ class VoiceEditor(Form):
         #self.markersButton.Click += self.set_focus_on_edit_window
         self.markersButton.Click+=self.list_markers
 
+        self.tokenButton = Button()
+        self.tokenButton.Text ='tokenise'
+        self.tokenButton.Location=Point(self.EditPanelHpos, 880)
+        self.tokenButton.Click+=self.list_tokens
+
+
         self.label = Label()
         self.label.Text = "Nothing So Far"
         self.label.Location = Point(20, 170)
@@ -234,6 +242,7 @@ class VoiceEditor(Form):
         self.Controls.Add(self.variableButton)
         self.Controls.Add(self.templatesButton)
         self.Controls.Add(self.markersButton)
+        self.Controls.Add(self.tokenButton)
 
 	#self.ActiveControl = self.cmdBox
 
@@ -318,6 +327,7 @@ class VoiceEditor(Form):
 
     def editBoxOnEnter(self,sender,e):
         key = e.KeyCode
+        modifiers = e.Modifiers
         if key == Keys.Enter:
          self.cmdBoxHandler.processCmd("return")
         if key == Keys.Down:
@@ -332,6 +342,7 @@ class VoiceEditor(Form):
             self.cmdBoxHandler.processCmd("insert line break")
         if key == Keys.F4:
             self.cmdBoxHandler.processCmd("remove line break")
+
 
     def cmdBoxOnMouseWheel(self,sender,e):
 
@@ -349,6 +360,8 @@ class VoiceEditor(Form):
 
     def cmdBoxOnEnter(self,sender,e):
         key = e.KeyCode
+        modifiers = e.Modifiers
+
         if key == Keys.Enter:
             previousCommand=self.cmdBoxHandler.cmd
             self.cmdBoxHandler.processCmd(self.cmdBox.Text)
@@ -360,11 +373,14 @@ class VoiceEditor(Form):
                     self.ActiveControl = self.editBox
             if(not isinstance(self.cmdBoxHandler.cmd, CmdEditSubstitute)):
                 self.cmdBox.Text=""
+        if key == Keys.Escape:
+            self.cmdBoxHandler.processCmd("escape command")
 
         if key == Keys.Up:
             self.cmdBoxHandler.processCmd("up")
         if key == Keys.Down:
             self.cmdBoxHandler.processCmd("down")
+
 
     def viewBoxOnEnter(self,sender,e):
         key = e.KeyCode
@@ -422,8 +438,17 @@ class VoiceEditor(Form):
         self.cmdBoxHandler.processCmd("switch to previous file")
 
     def list_variables(self,sender,e):
-        self.set_focus_on_edit_window
-        self.fastButtonAreaHandler.processCommand("fast button list variables")
+        if (self.fileIsBeingEdited()):
+            self.set_focus_on_edit_window
+            if (self.fileIsPythonFile()):
+                self.fastButtonAreaHandler.processCommand("fast button list variables")
+            elif (self.fileIsUVMFile()):
+                self.fastButtonAreaHandler.processCommand("fast button list UVM variables")
+            else:
+                self.statusBox.Text="List variables function currently only supports Python and UVM files"
+        else:
+            self.statusBox.Text="Must be editing a file to list variables"
+
 
     def list_templates(self,sender,e):
         self.set_focus_on_edit_window
@@ -431,6 +456,9 @@ class VoiceEditor(Form):
 
     def list_markers(self,sender,e):
         self.fastButtonAreaHandler.processCommand("fast button list markers")
+
+    def list_tokens(self,sender,e):
+        self.fastButtonAreaHandler.processCommand("fast button list tokens")
 
     def zoom_out(self, sender, event):
       if self.font_size>10 :
@@ -507,12 +535,43 @@ class VoiceEditor(Form):
 
     def recover_active_window(self):
 
-        # print ("self.activeEntryWindow",self.activeEntryWindow)
 
         if (self.activeEntryWindow=="command"):
                 self.ActiveControl = self.cmdBox
         else:
                 self.ActiveControl=self.editBox
+
+
+
+    def fileIsBeingEdited(self):
+
+        return (isinstance(self.cmdBoxHandler.cmd,CmdEdit))
+
+
+
+    def fileIsPythonFile(self):
+
+        if (self.fileIsBeingEdited()):
+
+            if(self.cmdBoxHandler.cmd.fullFileName.endswith(".py")):
+                return 1
+
+        return 0
+
+
+
+    def fileIsUVMFile(self):
+
+        if (self.fileIsBeingEdited()):
+
+            if(self.cmdBoxHandler.cmd.fullFileName.endswith(".svh")):
+                return 1
+            if(self.cmdBoxHandler.cmd.fullFileName.endswith(".sv")):
+                return 1
+            if(self.cmdBoxHandler.cmd.fullFileName.endswith(".v")):
+                return 1
+
+        return 0
 
 
 

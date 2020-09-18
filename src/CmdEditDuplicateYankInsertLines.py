@@ -32,11 +32,14 @@ class CmdEditDuplicateYankInsertLines(object):
   self.rangeStart=0
   self.rangeEnd=0
   self.parent=parent
+  self.bufferSize=0
 
  def __call__(self,command,currentEditLine,lineOperationBuffer):
 
   self.currentEditLine=currentEditLine
   self.lineOperationBuffer=lineOperationBuffer
+  self.bufferSize=len(self.lineOperationBuffer)
+  repeat=1
 
   matchCurrentLine=\
       re.match(
@@ -47,13 +50,22 @@ class CmdEditDuplicateYankInsertLines(object):
    self.rangeStart=currentEditLine
    self.rangeEnd=currentEditLine
 
-  matchSingleLine=\
+  matchSingleLineStyle1=\
       re.match(
           r'(duplicate|yank)\s+lines\s*(\d+)\s*:\s*\[end line\]',
               command)
-  if(matchSingleLine):
-   self.operation=matchSingleLine.group(1)
-   self.rangeStart=int(matchSingleLine.group(2))
+  if(matchSingleLineStyle1):
+   self.operation=matchSingleLineStyle1.group(1)
+   self.rangeStart=int(matchSingleLineStyle1.group(2))
+   self.rangeEnd=self.rangeStart
+
+  matchSingleLineStyle2=\
+      re.match(
+          r'(duplicate|yank)\s+lines\s*(\d+)\s*',
+              command)
+  if(matchSingleLineStyle2):
+   self.operation=matchSingleLineStyle2.group(1)
+   self.rangeStart=int(matchSingleLineStyle2.group(2))
    self.rangeEnd=self.rangeStart
 
   matchLineRange=\
@@ -70,11 +82,18 @@ class CmdEditDuplicateYankInsertLines(object):
    self.operation=matchInsertLines.group(1)
    self.rangeStart=int(matchInsertLines.group(2))
 
+  matchInsertLinesMultipleTimes=re.match(r'(insert)\s+lines\s*(\d+):\s*(\d+)',command)
+  if(matchInsertLinesMultipleTimes):
+   self.operation=matchInsertLinesMultipleTimes.group(1)
+   self.rangeStart=int(matchInsertLinesMultipleTimes.group(2))
+   repeat=int(matchInsertLinesMultipleTimes.group(3))
+
   if(self.rangeStart < 0):
    self.rangeStart=0
 
-  if(self.rangeEnd >=len(self.fileToEditList)-1):
-   self.rangeEnd=len(self.fileToEditList)-1
+  if(self.rangeStart > len(self.fileToEditList)-1):
+   self.rangeStart=len(self.fileToEditList)-1
+
 
   if(self.operation not in ("duplicate", "yank", "insert")):
    self.statusBox.Text="Invalid operation: %s" % self.operation
@@ -87,7 +106,7 @@ class CmdEditDuplicateYankInsertLines(object):
    self.yank_lines()
 
   if(self.operation=="insert"):
-   self.insert_lines()
+   self.insert_lines(repeat)
 
  def duplicate_lines(self):
   del self.lineOperationBuffer[:]
@@ -115,12 +134,17 @@ class CmdEditDuplicateYankInsertLines(object):
   FastButtonMarkers.adjust_markers(self.parent.fullFileName,self.rangeStart,rangeDelta)
   self.parent.voiceEditor.fastButtonAreaHandler.refresh()
 
- def insert_lines(self):
-  lineNumber=self.rangeStart
-  for lineToInsert in self.lineOperationBuffer:
+ def insert_lines(self, repeat):
+
+
+  for lineNumber in range(self.rangeStart,self.rangeStart+repeat*self.bufferSize):
+
+
+   bufferIndex=(lineNumber-self.rangeStart)%self.bufferSize
+   lineToInsert=self.lineOperationBuffer[bufferIndex]
    self.fileToEditList.insert(lineNumber,lineToInsert)
    lineNumber=lineNumber+1
-  rangeDelta=len(self.lineOperationBuffer)
-  FastButtonMarkers.adjust_markers(self.parent.fullFileName,self.rangeStart,rangeDelta)
-  self.parent.voiceEditor.fastButtonAreaHandler.refresh()
+
+   FastButtonMarkers.adjust_markers(self.parent.fullFileName,self.rangeStart,self.bufferSize)
+   self.parent.voiceEditor.fastButtonAreaHandler.refresh()
 

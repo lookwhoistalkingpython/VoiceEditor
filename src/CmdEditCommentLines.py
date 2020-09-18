@@ -21,7 +21,7 @@ import re
 
 class CmdEditCommentLines(object):
 
- def __init__(self,fileToEditList,cmdBox,editBox,viewBox,statusBox):
+ def __init__(self,fileToEditList,fullFileName,cmdBox,editBox,viewBox,statusBox):
   self.cmdBox=cmdBox
   self.editBox=editBox
   self.viewBox=viewBox
@@ -30,6 +30,12 @@ class CmdEditCommentLines(object):
   self.operation=""
   self.rangeStart=0
   self.rangeEnd=0
+
+  self.commentCharacter="#"
+
+  if (fullFileName.endswith(".svh") or fullFileName.endswith(".sv")):
+   self.commentCharacter="//"
+
 
  def __call__(self,command):
 
@@ -64,15 +70,15 @@ class CmdEditCommentLines(object):
  def comment_out(self):
   for lineIndex in range(self.rangeStart,self.rangeEnd+1):
    lineToEdit=self.fileToEditList[lineIndex]
-   lineToEdit="#"+ lineToEdit
+   lineToEdit=self.commentCharacter+lineToEdit
    self.fileToEditList[lineIndex]=lineToEdit
 
  def comment_in(self):
   for lineIndex in range(self.rangeStart,self.rangeEnd+1):
    lineToEdit=self.fileToEditList[lineIndex]
-   matchCommentLine=re.match(r'(\s*#)', lineToEdit)
+   matchCommentLine=re.match(r'(\s*%s)'%self.commentCharacter,lineToEdit)
    if(matchCommentLine):
-    lineToEdit=lineToEdit.replace(r'#', "",1)
+    lineToEdit=lineToEdit.replace(r'%s'%self.commentCharacter, "",1)
    self.fileToEditList[lineIndex]=lineToEdit
 
 

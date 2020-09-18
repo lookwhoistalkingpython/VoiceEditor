@@ -76,7 +76,6 @@ class CmdEdit(object) :
   self.cmdEditDuplicateYankInsertLines=\
       CmdEditDuplicateYankInsertLines\
           (self,cmdBox,editBox,viewBox,statusBox)
-  self.cmdEditCommentLines=CmdEditCommentLines(self.fileToEditList,cmdBox,editBox,viewBox,statusBox)
   self.cmdEditIndentLines=CmdEditIndentLines(self.fileToEditList,cmdBox,editBox,viewBox,statusBox)
   #self.cmdEditSubstitute=CmdEditSubstitute(self.fileToEditList,cmdBox,editBox,viewBox,statusBox)
   self.cmdEditUpdateScale=CmdEditUpdateScale(self.scaleBox,self.editBox,self.statusBox)
@@ -95,8 +94,7 @@ class CmdEdit(object) :
   if(command=="list directory"):
    self.listDirectory.processThisCommand(command)
    self.nextCommand=self.listDirectory
-   self.save_file()
-   #self.close_file()
+   self.close_file()
    self.fileToEdit=None
    self.set_previous_file()
    CmdEdit.currentEditLineByFile[self.fullFileName]=self.currentEditLine
@@ -147,8 +145,11 @@ class CmdEdit(object) :
    self.cmdEditIndentLines(command)
    self.displayFile()
   elif(re.match(r'\s*(comment out|comment in)\s+line',command)):
+   cmdEditCommentLines=\
+    CmdEditCommentLines(\
+     self.fileToEditList,self.fullFileName, self.cmdBox, self.editBox, self.viewBox, self.statusBox)
    self.save_file()
-   self.cmdEditCommentLines(command)
+   cmdEditCommentLines(command)
    self.displayFile()
   elif(re.match(r'\s*(duplicate|yank|insert)\s+line',command)):
    self.save_file()
@@ -239,12 +240,6 @@ class CmdEdit(object) :
    self.fileToEdit.close()
    self.load_file()
    self.displayFile()
-#  elif (re.match(r'\s*help template\s+(?P<templateNumber>\d+)',command)):
-##  elif (command=="help"):
-#   m=re.match(r'\s*help template\s+(?P<templateNumber>\d+)',command)
-#   templateNumber=m.group("templateNumber")
-#   templateNumber=int(templateNumber)
-#   self.display_help_template(templateNumber)
   elif(command.isdigit()):
    self.currentEditLine=int(command)
    if(self.currentEditLine>len(self.fileToEditList)-1):
@@ -321,9 +316,7 @@ class CmdEdit(object) :
    self.fileToEdit.seek(0)
    self.fileToEdit.truncate()
    for line in self.fileToEditList:
-    line.replace(r'\r',r'')
     self.fileToEdit.write(line+"\n")
-   #self.fileToEdit.close()
    self.close_file()
    self.statusBox.Text="%s (Saved)"%self.fullFileName
 
@@ -383,7 +376,10 @@ class CmdEdit(object) :
    return
 
   try:
-   self.fileToEdit=io.open(self.fullFileName, mode,newline='\n')
+   if(VoiceEditorSettings.useUNIXStyleLineEnding):
+    self.fileToEdit=io.open(self.fullFileName, mode,newline='\n')
+   else:
+    self.fileToEdit=io.open(self.fullFileName, mode)
   except:
    self.statusBox.Text="unable to open file: "+self.fullFileName+" mode: "+ mode
    self.fileToEdit=None

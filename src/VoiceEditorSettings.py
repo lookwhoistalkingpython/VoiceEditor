@@ -78,4 +78,4 @@ class VoiceEditorSettings :
 
  helpFile=VOICEEDITORROOT+r'\run\help.txt'
 
-
+ useUNIXStyleLineEnding=1

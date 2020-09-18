@@ -54,6 +54,7 @@ class FastButtonTemplates(FastButtonRenderButtons):
 
  def processCommand(self,fastCommand):
 
+
   self.nextCommand=None
 
   currentContextSplitList=self.currentContext.split(".")
@@ -102,8 +103,8 @@ class FastButtonTemplates(FastButtonRenderButtons):
    else:
     self.currentContext=self.currentContext+"."+nextLevelContextDelta
 
-   #if (not self.currentContext in self.templateDictionary.keys()):
-   if(not self.isLeafContext):
+   #if(not self.isLeafContext):
+   if (self.currentContext not in self.templateDictionary.keys()):
     self.get_choices_at_this_level()
     self.render_fast_button_area()
    else:

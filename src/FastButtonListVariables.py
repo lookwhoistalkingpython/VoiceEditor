@@ -24,6 +24,7 @@ from CmdEdit import CmdEdit
 from VoiceEditorSettings import VoiceEditorSettings
 from FastButtonAreaPage import FastButtonAreaPage
 from CmdEditFilter import CmdEditFilter
+from CmdEditSubstitute import CmdEditSubstitute
 from FastButtonRenderButtons import FastButtonRenderButtons
 
 
@@ -171,7 +172,10 @@ class FastButtonListVariables(FastButtonRenderButtons):
       else:
        self.voiceEditor.cmdBoxHandler.cmd.insert_in_cmd_box_at_cursor_position(textToInsert)
       self.nextCommand=self
-     elif (isinstance(self.voiceEditor.cmdBoxHandler.cmd,CmdEditFilter)):
+     elif (
+      isinstance(self.voiceEditor.cmdBoxHandler.cmd,CmdEditFilter) or
+      isinstance(self.voiceEditor.cmdBoxHandler.cmd,CmdEditSubstitute)
+     ):
       textToInsert=self.variableList[int(self.fastCommand)]
       if (self.voiceEditor.activeEntryWindow=="edit"):
        self.voiceEditor.cmdBoxHandler.cmd.parent.insert_in_edit_box_at_cursor_position(textToInsert)
