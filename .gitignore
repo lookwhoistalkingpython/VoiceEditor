@@ -7,4 +7,5 @@ duplicate_move_delete.py
 run/help.txt
 release/
 scratch/*
+__pycache__/
 

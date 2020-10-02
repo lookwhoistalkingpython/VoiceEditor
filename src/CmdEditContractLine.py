@@ -37,6 +37,7 @@ class CmdEditContractLine(object):
   self.fileToEditList=fileToEditList
   self.currentEditLine=currentEditLine
   self.parent=parent
+  self.localKeywordList=["await"]
 
 
 
@@ -114,7 +115,7 @@ class CmdEditContractLine(object):
     contractedString=contractedString+notWord
 
    if(aWord):
-    if(keyword.iskeyword(aWord)):
+    if(keyword.iskeyword(aWord) or aWord in self.localKeywordList):
      if (contractedString=="" or contractedString[-1]==" "):
       contractedString=contractedString+aWord+" "
      else:

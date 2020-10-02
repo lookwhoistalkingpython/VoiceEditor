@@ -5,3 +5,4 @@ scripts
 snapshot
 scratch
 templates
+C:\Users\cocotb\miniconda3\envs\symbol_agent_cocotb\tests
